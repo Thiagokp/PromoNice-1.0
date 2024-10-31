@@ -1,0 +1,70 @@
+/* Header Geral */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 0;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  max-width: 600px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-button {
+  background: #555;
+  border: none;
+  padding: 8px;
+  border-radius: 0 4px 4px 0;
+}
+
+.search-button img {
+  width: 20px;
+}
+
+.navigation ul {
+  list-style: none;  /* Certifique-se de que a lista não tenha marcadores */
+  display: flex;     /* Utiliza flexbox para alinhar em linha */
+  gap: 20px;        /* Espaçamento entre os itens */
+  padding: 0;       /* Remove o preenchimento padrão */
+  margin: 0;        /* Remove a margem padrão */
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.navigation a:hover {
+  color: orangered;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .search-container {
+    width: 90%;
+  }
+  .navigation ul {
+    flex-direction: column; /* Muda para coluna em telas pequenas */
+    align-items: center;     /* Centraliza os itens */
+  }
+}
