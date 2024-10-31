@@ -1,0 +1,27 @@
+<section id="product-form">
+  <h2>Cadastrar Novo Produto</h2>
+  <form id="new-product-form" (submit)="addProduct($event)">
+      <label for="product-image">Imagem (URL):</label>
+      <input type="text" id="product-image" placeholder="URL da imagem" [(ngModel)]="newProduct.image" name="image" required>
+
+      <label for="product-name">Nome do Produto:</label>
+      <input type="text" id="product-name" placeholder="Nome do Produto" [(ngModel)]="newProduct.name" name="name" required>
+
+      <label for="product-price">Preço:</label>
+      <input type="number" id="product-price" placeholder="Preço do Produto" [(ngModel)]="newProduct.price" name="price" required>
+
+      <label for="product-description">Descrição:</label>
+      <input type="text" id="product-description" placeholder="Descrição do Produto" [(ngModel)]="newProduct.description" name="description" required>
+
+      <button type="submit" class="btn-cadastrar">Cadastrar Produto</button>
+  </form>
+</section>
+
+<section class="container" id="product-container">
+  <div *ngFor="let product of products" class="product-card">
+    <img [src]="product.image" alt="{{ product.name }}">
+    <h3>{{ product.name }}</h3>
+    <p>Preço: {{ product.price | currency }}</p>
+    <p>{{ product.description }}</p>
+  </div>
+</section>
