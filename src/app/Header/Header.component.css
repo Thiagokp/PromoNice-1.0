@@ -48,14 +48,14 @@
 }
 
 .navigation a {
-  color: white;
+  color: orangered;
   text-decoration: none;
   font-size: 18px;
   transition: color 0.3s;
 }
 
 .navigation a:hover {
-  color: orangered;
+  color: white;
 }
 
 /* Responsividade */
