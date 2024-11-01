@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './Header/Header.component';
 import { PaginaInicialComponent } from './Pagina-Inicial/Pagina-Inicial.component';
-import { FormsModule } from '@angular/forms'; // Importe o FormsModule aqui
-
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeaderComponent } from './Header/Header.component'; // Importando HeaderComponent
+import { HttpClientModule } from '@angular/common/http'; // Importando HttpClientModule
 
 @NgModule({
   declarations: [
     AppComponent,
-      PaginaInicialComponent,
-   ],
+    PaginaInicialComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    FontAwesomeModule,
     HeaderComponent,
-    FormsModule
-],
+    HttpClientModule, // Adicione o HttpClientModule aqui
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
