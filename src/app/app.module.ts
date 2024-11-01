@@ -7,7 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './Header/Header.component'; // Importando HeaderComponent
 import { HttpClientModule } from '@angular/common/http'; // Importando HttpClientModule
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent,

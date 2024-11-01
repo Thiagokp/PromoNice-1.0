@@ -24,7 +24,7 @@
   <div *ngFor="let product of products" class="product-card" (click)="openPromotionLink(product.promotionLink)">
     <img [src]="product.image" alt="{{ product.name }}">
     <h3>{{ product.name }}</h3>
-    <p>Preço: {{ product.price | currency }}</p>
+    <h2>{{ product.price | currency:'BRL' :'symbol':'1.2-2'}}</h2>
     <p>{{ product.description }}</p>
 
     <!-- Ícones de like e dislike -->
