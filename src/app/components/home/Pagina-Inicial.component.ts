@@ -1,21 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-
-// Definição da interface Product
-interface Product {
-  image: string;
-  name: string;
-  price: number; // Preço deve ser um número
-  description: string;
-  promotionLink: string; // Campo para o link da promoção
-}
+import { Product } from './shared/home.model';
 
 @Component({
-  selector: 'app-pagina-inicial',
-  templateUrl: './pagina-inicial.component.html',
-  styleUrls: ['./pagina-inicial.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class PaginaInicialComponent implements OnInit {
+export class HomeComponent implements OnInit {
   // Ícones de like e dislike
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
