@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   // Ícones de like e dislike
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
+  isClicked: boolean = false;
 
   // Array para armazenar os produtos
   products: Product[] = [];
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
   // Método para adicionar um novo produto
   addProduct(event: Event): void {
     event.preventDefault(); // Impede o comportamento padrão do formulário
+    this.isClicked = true;
 
     if (this.isFormValid()) {
       // Converte o preço de string para número, removendo os caracteres não numéricos
@@ -54,6 +56,7 @@ export class HomeComponent implements OnInit {
       });
 
       // Limpa o formulário
+      this.isClicked = false;
       this.newProduct = { image: '', name: '', price: '', description: '', promotionLink: '' };
     }
   }
