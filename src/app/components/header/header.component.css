@@ -1,24 +1,39 @@
 /* Header Geral */
 .header {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Stack items vertically */
   align-items: center;
   background-color: #333;
-  padding: 10px 0;
   color: white;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
+  /*height: 90px;*/
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.top-section {
+  display: flex;
+  width: 90%;
+  max-width: 600px;
+  justify-content: center;
+}
+
+.logo {
+  margin-right: 40px;
+}
+
+.logo img {
+  width: 100px;
+  height:100px;
+  max-height: 100px;
 }
 
 .search-container {
   display: flex;
   align-items: center;
-  width: 80%;
-  max-width: 600px;
-  margin-bottom: 10px;
+  flex: 1;
 }
 
 .search-input {
@@ -35,16 +50,19 @@
   border-radius: 0 4px 4px 0;
 }
 
-.search-button img {
-  width: 20px;
+/* Navigation links */
+.navigation {
+  width: 100%;
+  max-width: 600px;
 }
 
 .navigation ul {
-  list-style: none;  /* Certifique-se de que a lista não tenha marcadores */
-  display: flex;     /* Utiliza flexbox para alinhar em linha */
-  gap: 20px;        /* Espaçamento entre os itens */
-  padding: 0;       /* Remove o preenchimento padrão */
-  margin: 0;        /* Remove a margem padrão */
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 0;
+  margin: 0;
 }
 
 .navigation a {
@@ -60,11 +78,14 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .search-container {
-    width: 90%;
+  .top-section {
+    flex-direction: column;
+    align-items: center;
   }
+
   .navigation ul {
-    flex-direction: column; /* Muda para coluna em telas pequenas */
-    align-items: center;     /* Centraliza os itens */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Adjust gap for smaller screens */
   }
 }
