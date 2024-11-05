@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http'; // Importando HttpClientModule
-import { HomeComponent } from './components/home/Pagina-Inicial.component';
+import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./components/header/header.component";
 
 
