@@ -19,6 +19,12 @@ body {
 #product-form h2 {
   text-align: center;
   color: #333;
+  margin: 60px 0 40px 0;
+}
+
+.h2Cadastrar {
+  font-family: Arial, sans-serif;
+  font-weight: 800;
 }
 
 #product-form label {
@@ -129,3 +135,4 @@ body {
  padding: 30px;
  margin-top: 100px;
 }
+
