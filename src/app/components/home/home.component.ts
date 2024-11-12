@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
 
     if (this.isFormValid()) {
       // Converte o preço de string para número, removendo os caracteres não numéricos
-      const parsedPrice = parseFloat(this.newProduct.price.replace(/[^0-9,-]+/g, '').replace(',', '.'));
+      const parsedPrice = parseFloat(this.newProduct.price.replace(/\./g, '').replace(',', '.'));
 
       // Adiciona o novo produto ao array de produtos
       this.products.push({
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
     return this.newProduct.image.trim() !== '' &&
            this.newProduct.name.trim() !== '' &&
            this.newProduct.price.trim() !== '' &&
-           parseFloat(this.newProduct.price.replace(/[^0-9,-]+/g, '').replace(',', '.')) > 0 &&
+           parseFloat(this.newProduct.price.replace(/\./g, '').replace(',', '.')) > 0 &&
            this.newProduct.description.trim() !== '' &&
            this.newProduct.promotionLink.trim() !== ''; // Valida o link da promoção
   }

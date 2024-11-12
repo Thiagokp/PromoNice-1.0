@@ -19,6 +19,12 @@ body {
 #product-form h2 {
   text-align: center;
   color: #333;
+  margin: 50px 0 40px 0;
+}
+
+.h2Cadastrar {
+  font-family: Arial, sans-serif;
+  font-weight: 800;
 }
 
 #product-form label {
@@ -50,6 +56,13 @@ body {
 
 #product-form .btn-cadastrar:hover {
   background-color: #e63900;
+  transform: scale(1.03);
+  transition: 0.3s;
+}
+
+#product-form .btn-cadastrar:active {
+  transform: scale(1);
+  transition: 0.3s;
 }
 
 /* Estilo da lista de produtos */
@@ -129,3 +142,4 @@ body {
  padding: 30px;
  margin-top: 100px;
 }
+
