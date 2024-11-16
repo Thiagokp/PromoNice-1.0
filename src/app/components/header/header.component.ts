@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faSearch, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faThumbsDown, faThumbsUp, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Importar FontAwesomeModule
 
 @Component({
@@ -9,12 +9,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Importa
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent {
   faSearch = faSearch;
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
-
-
+  faPlus = faPlus
+  
   onSearch() {
     const searchInput = (document.querySelector('.search-input') as HTMLInputElement).value;
     console.log('Buscando por:', searchInput);
