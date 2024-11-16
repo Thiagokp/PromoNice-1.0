@@ -16,7 +16,7 @@
 .top-section {
   display: flex;
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   justify-content: center;
   padding: 30px 0 20px 0;
 }
@@ -41,7 +41,8 @@
   padding: 8px 12px;
   border: none;
   outline: none;
-  border-radius: 4px 0 0 4px;
+  border-radius: 6px 0 0 6px;
+  height: 20px;
 }
 
 .search-button {
@@ -50,6 +51,30 @@
   padding: 8px;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
+  width: 50px;
+  height: 36px;
+}
+
+.new-post-button {
+  background: orangered;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50px;
+  height: 36px;
+  margin-left: 40px;
+  -webkit-transition: all 0.3s ;
+}
+
+.new-post-button:hover {
+  transform: scale(1.2);
+  color: white;
+  background-color: #e63900;
+}
+
+.new-post-button:active {
+  transform: scale(1);
 }
 
 /* Navigation links */
@@ -68,6 +93,7 @@
 }
 
 .navigation a {
+  font-family: Arial, sans-serif;
   color: orangered;
   text-decoration: none;
   font-size: 18px;
