@@ -44,7 +44,14 @@ export class HomeComponent implements OnInit {
 
     if (this.isFormValid()) {
       // Converte o preço de string para número, removendo os caracteres não numéricos
-      const parsedPrice = parseFloat(this.newProduct.price.replace(/\./g, '').replace(',', '.'));
+      const sanitizedPrice = this.newProduct.price.replace(/\./g, '').replace(',', '.'); // Remove milhar e ajusta decimal
+      const parsedPrice = parseFloat(sanitizedPrice);
+
+      if (isNaN(parsedPrice)) {
+        console.error('Preço inválido:', this.newProduct.price);
+        this.isClicked = false;
+        return;
+      }
 
       // Adiciona o novo produto ao array de produtos
       this.products.push({
@@ -70,6 +77,15 @@ export class HomeComponent implements OnInit {
            this.newProduct.description.trim() !== '' &&
            this.newProduct.promotionLink.trim() !== ''; // Valida o link da promoção
   }
+
+    // Formata o preço no formato brasileiro
+formatPriceForDisplay(price: number): string {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(price);
+}
 
   // Método para redirecionar para o link da promoção
   openPromotionLink(link: string): void {
