@@ -109,6 +109,7 @@ main form .password-infos input {
 
 main form .password-infos a {
     transition: 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 main form .password-infos a:hover {
