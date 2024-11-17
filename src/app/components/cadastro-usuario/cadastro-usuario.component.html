@@ -1,77 +1,67 @@
-<main class="main-login" *ngIf="mostrarForm">  
-    <form id="login">
+<main class="main-login" *ngIf="mostrarForm">
+    <form id="login" [formGroup]="loginForm" (ngSubmit)="validarLogin()">
         <section class="makelogin">
             <h2>Bem vindo(a)!</h2>
         </section>
         <section class="inputs-container">
-            <input type="email" placeholder="example@gmail.com" id="loginEmail" required>
+            <input type="email" formControlName="loginEmail" placeholder="example@gmail.com" required>
 
             <div class="password-container">
-                <input type="password" id="loginSenha" class="field-password" placeholder="******" required>
-                <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
-                <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
+                <input type="password" formControlName="loginSenha" class="field-password" placeholder="******" required>
             </div>
         </section>
-
         <section class="password-infos">
             <div>
                 <input type="checkbox">
                 <Span>Lembrar senha</Span>
             </div>
-
             <a routerLink="/home">Esqueceu sua senha?</a>
         </section>
 
-        <button id="btn-login" onclick="validarLogin()">Login</button>
-        <div id="loginErrorMessage" class="error-message"></div>      
-       
+        <button id="btn-login" type="submit">Login</button>
+        <div *ngIf="mostrarErroLogin" style="color: red; margin-top: 10px;" class="error-message">Preencha todos os campos corretamente.</div>
+
         <footer>
             <hr>
             <span>Ainda não possui uma conta? <a (click)="mudarForms()">Cadastre-se</a></span>
         </footer>
     </form>
 </main>
+
+<!-- --------------------------------------------Form Cadastro-------------------------------------------------------- -->
+
 <main class="main-cadastro" *ngIf="!mostrarForm">
-        <form id="cadastro">
-            <section class="makelogin">
-                <h2>Bem vindo(a)!</h2>
-            </section>
-            <section class="inputs-container">
-                <input type="text" placeholder="Nome completo" id="cadastroNome" required>
-               
-                <div class="password-container">    <!--campo email, está com classe password pra facilitar estilização-->
-                    <input type="email" placeholder="example@gmail.com" id="cadastroEmail" required>
-                </div>
+    <form id="cadastro" [formGroup]="cadastroForm" (ngSubmit)="validarCadastro()">
+        <section class="makelogin">
+            <h2>Bem vindo(a)!</h2>
+        </section>
+        <section class="inputs-container">
+            <input type="text" placeholder="Nome completo" formControlName="cadastroNome"  required>
 
-                <div class="password-container">
-                    <input type="password" id="cadastroSenha" class="field-password" placeholder="Crie sua senha" required>
-                </div>
-                <div id="senhaErrorMessage" style="color: red; margin-top: 5px; width: 90%;" class="error-message"></div>
-                <div class="password-container">
-                    <input type="password" id="confirmarCadastroSenha" class="field-password" placeholder="Confirme a senha" required>
-                </div>
+            <div class="password-container"> <!--campo email, está com classe password pra facilitar estilização-->
+                <input type="email" placeholder="example@gmail.com" formControlName="cadastroEmail"  required>
+            </div>
+            <div class="password-container">
+                <input type="password" class="field-password" formControlName="cadastroSenha" placeholder="Crie sua senha" required>
+            </div>
+            <div class="password-container">
+                <input type="password" class="field-password" formControlName="confirmarCadastroSenha" placeholder="Confirme a senha"
+                    required>
+            </div>
+        </section>
+        <section class="password-infos">
+            <div>
+                <input type="checkbox">
+                <Span>Lembrar senha</Span>
+            </div>
 
-               
+        </section>
 
-            </section>
-            <div id="cadastroErrorMessage" style="color: red; margin-top: 5px; width: 90%;" class="error-message"></div>
-            <section class="password-infos">
-
-               
-
-                <div>
-                    <input type="checkbox">
-                    <Span>Lembrar senha</Span>
-                </div>
-
-            </section>
-
-            <button id="btn-login" onclick="validarCadastro()">Cadastre-se</button>
-           
-           
-            <footer>
-                <hr>
-                <span>Já possui uma conta? <a (click)="mudarForms()">Faça login</a></span>
-            </footer>
-        </form>
+        <button id="btn-login" type="submit">Cadastre-se</button>
+        <div *ngIf="mostrarErroCadastro" style="color: red; margin-top: 10px;" class="error-message">Preencha todos os campos corretamente.</div>
+        <footer>
+            <hr>
+            <span>Já possui uma conta? <a (click)="mudarForms()">Faça login</a></span>
+        </footer>
+    </form>
 </main>
