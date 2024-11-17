@@ -9,7 +9,7 @@
         <fa-icon [icon]="faSearch"></fa-icon>
       </button>
       <div>
-        <button class="new-post-button">
+        <button routerLink="" class="new-post-button">
           <fa-icon [icon]="faPlus"></fa-icon>
         </button>
       </div>
@@ -18,10 +18,10 @@
 
   <nav class="navigation">
     <ul class="list-unstyled d-flex mb-0">
-      <li class="me-3"><a id="Home" href="#">Home</a></li>
-      <li class="me-3"><a id="DestaquesdaSemana" href="#">Destaques da Semana</a></li>
-      <li><a id="Recentes" href="#">Recentes</a></li>
-      <li><a id="MeuPerfil" href="#">Meu Perfil</a></li>
+      <li class="me-3"><a id="Home" routerLink="">Home</a></li>
+      <li class="me-3"><a id="DestaquesdaSemana" routerLink="">Destaques da Semana</a></li>
+      <li><a id="Recentes" routerLink="">Recentes</a></li>
+      <li><a id="MeuPerfil" routerLink="/cadastro-usuario">Meu Perfil</a></li>
     </ul>
   </nav>
 </div>

@@ -7,13 +7,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http'; // Importando HttpClientModule
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./components/header/header.component";
-
+import { CadastroUsuarioComponent } from './components/cadastro-usuario/cadastro-usuario.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    CadastroUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { HeaderComponent } from "./components/header/header.component";
     FormsModule,
     FontAwesomeModule,
     HeaderComponent,
+    RouterModule,
     HttpClientModule, // Adicione o HttpClientModule aqui
   ],
   providers: [],
