@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { faSearch, faThumbsDown, faThumbsUp, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Importar FontAwesomeModule
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FontAwesomeModule], // Adicione o módulo aqui
+  imports: [FontAwesomeModule, RouterModule], // Adicione o módulo aqui
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
