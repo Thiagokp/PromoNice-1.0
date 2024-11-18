@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./components/header/header.component";
 import { CadastroUsuarioComponent } from './components/cadastro-usuario/cadastro-usuario.component';
 import { RouterModule } from '@angular/router';
+import { CadastroProdutoComponent } from './components/cadastro-produto/cadastro-produto.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     HomeComponent,
     CadastroUsuarioComponent,
+    CadastroProdutoComponent,
   ],
   imports: [
     BrowserModule,
