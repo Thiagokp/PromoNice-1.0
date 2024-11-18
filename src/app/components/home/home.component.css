@@ -35,8 +35,6 @@ body {
 
 #product-form input {
   width: 100%;
-  max-width: 580px;
-  outline: none;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
@@ -54,17 +52,19 @@ body {
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s;
-  -webkit-transition: all 0.3s;
 }
 
 #product-form .btn-cadastrar:hover {
   background-color: #e63900;
   transform: scale(1.03);
+  transition: 0.3s;
 }
 
 #product-form .btn-cadastrar:active {
   transform: scale(1);
+  transition: 0.3s;
 }
+
 /* Estilo da lista de produtos */
 #product-container {
   display: flex;
