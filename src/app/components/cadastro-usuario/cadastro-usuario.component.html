@@ -1,77 +1,54 @@
-<main class="main-login" *ngIf="mostrarForm">  
-    <form id="login">
-        <section class="makelogin">
-            <h2>Bem vindo(a)!</h2>
-        </section>
-        <section class="inputs-container">
-            <input type="email" placeholder="example@gmail.com" id="loginEmail" required>
+<main class="main-login" *ngIf="mostrarForm">
+  <form id="login">
+      <section class="makelogin">
+          <h2>Bem vindo(a)!</h2>
+      </section>
+      <section class="inputs-container">
+          <input type="email" placeholder="example@gmail.com" id="loginEmail" required>
 
-            <div class="password-container">
-                <input type="password" id="loginSenha" class="field-password" placeholder="******" required>
-                <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
-                <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
-            </div>
-        </section>
+          <div class="password-container">
+              <input type="password" id="loginSenha" class="field-password" placeholder="******" required>
+              <i class="fa-solid fa-eye" id="eye" onclick="showPassword()"></i>
+              <i class="fa-solid fa-eye-slash" id="eye-slash" onclick="showPassword()"></i>
+          </div>
+      </section>
 
-        <section class="password-infos">
-            <div>
-                <input type="checkbox">
-                <Span>Lembrar senha</Span>
-            </div>
+      <section class="password-infos">
+          <div>
+              <input type="checkbox">
+              <Span>Lembrar senha</Span>
+          </div>
 
-            <a routerLink="/home">Esqueceu sua senha?</a>
-        </section>
+          <a routerLink="/home">Esqueceu sua senha?</a>
+      </section>
 
-        <button id="btn-login" onclick="validarLogin()">Login</button>
-        <div id="loginErrorMessage" class="error-message"></div>      
-       
-        <footer>
-            <hr>
-            <span>Ainda não possui uma conta? <a (click)="mudarForms()">Cadastre-se</a></span>
-        </footer>
-    </form>
+      <button id="btn-login" onclick="validarLogin()">Login</button>
+      <div id="loginErrorMessage" class="error-message"></div>
+
+      <footer>
+          <hr>
+          <span>Ainda não possui uma conta? <a (click)="mudarForms()">Cadastre-se</a></span>
+      </footer>
+  </form>
 </main>
 <main class="main-cadastro" *ngIf="!mostrarForm">
-        <form id="cadastro">
-            <section class="makelogin">
-                <h2>Bem vindo(a)!</h2>
-            </section>
-            <section class="inputs-container">
-                <input type="text" placeholder="Nome completo" id="cadastroNome" required>
-               
-                <div class="password-container">    <!--campo email, está com classe password pra facilitar estilização-->
-                    <input type="email" placeholder="example@gmail.com" id="cadastroEmail" required>
-                </div>
+<form [formGroup]="cadastroForm" (ngSubmit)="salvarUsuario()">
+  <section class="makelogin">
+    <h2>Bem vindo(a)!</h2>
+  </section>
+  <section class="inputs-container">
+    <input formControlName="nome" type="text" placeholder="Nome completo" required>
+    <div *ngIf="cadastroForm.get('nome')?.invalid && cadastroForm.get('nome')?.touched" style="color: red;">Nome é obrigatório.</div>
 
-                <div class="password-container">
-                    <input type="password" id="cadastroSenha" class="field-password" placeholder="Crie sua senha" required>
-                </div>
-                <div id="senhaErrorMessage" style="color: red; margin-top: 5px; width: 90%;" class="error-message"></div>
-                <div class="password-container">
-                    <input type="password" id="confirmarCadastroSenha" class="field-password" placeholder="Confirme a senha" required>
-                </div>
+    <input formControlName="email" type="email" placeholder="example@gmail.com" required>
+    <div *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched" style="color: red;">Email inválido.</div>
 
-               
+    <input formControlName="senha" type="password" placeholder="Crie sua senha" required>
+    <div *ngIf="cadastroForm.get('senha')?.invalid && cadastroForm.get('senha')?.touched" style="color: red;">Senha precisa ter pelo menos 6 caracteres.</div>
 
-            </section>
-            <div id="cadastroErrorMessage" style="color: red; margin-top: 5px; width: 90%;" class="error-message"></div>
-            <section class="password-infos">
-
-               
-
-                <div>
-                    <input type="checkbox">
-                    <Span>Lembrar senha</Span>
-                </div>
-
-            </section>
-
-            <button id="btn-login" onclick="validarCadastro()">Cadastre-se</button>
-           
-           
-            <footer>
-                <hr>
-                <span>Já possui uma conta? <a (click)="mudarForms()">Faça login</a></span>
-            </footer>
-        </form>
+    <input formControlName="confirmarSenha" type="password" placeholder="Confirme a senha" required>
+    <div *ngIf="cadastroForm.hasError('mismatch')" style="color: red;">As senhas não conferem.</div>
+  </section>
+  <button type="submit" [disabled]="cadastroForm.invalid">Cadastre-se</button>
+</form>
 </main>
