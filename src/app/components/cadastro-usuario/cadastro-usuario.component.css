@@ -13,7 +13,8 @@ body {
   }
 
 .main-login {
-    width: 600px;
+  margin-top: 220px!important;
+    width: 500px;
     height: 550px;
     margin: 50px auto 20px;
     padding: 20px;
@@ -23,8 +24,9 @@ body {
 }
 
 .main-cadastro {
-    width: 600px;
-    height: 730px;
+    margin-top: 220px!important;
+    width: 500px;
+    height: 630px;
     margin: 50px auto 20px;
     padding: 20px;
     background-color: #fff;
@@ -59,6 +61,7 @@ main form .inputs-container {
 
 main form .inputs-container input {
     width: 90%;
+    margin-top: 25px;
     height: 60px;
     padding: 8px 15px;
     border: 0;
@@ -125,13 +128,14 @@ main form button {
     border: 0;
     outline: 0;
     border-radius: 12px;
-    margin-top: 6%;
+    margin-top: 7%;
     font-size: 1.6em;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease-in-out;
     background: linear-gradient(to right, #FFC371, #FF5F6D);
 }
+
 
 main form button:hover {
     background: #fff;
