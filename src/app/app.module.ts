@@ -13,8 +13,8 @@ import { CadastroProdutoComponent } from './components/cadastro-produto/cadastro
 import { ModalConfiguracaoComponent } from './components/header/modal-configuracao/modal-configuracao.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Adicione isso
-import { ToastrModule } from 'ngx-toastr'; // Importação do Toastr
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -35,7 +35,14 @@ import { ToastrModule } from 'ngx-toastr'; // Importação do Toastr
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // Adicionado para animações
-    ToastrModule.forRoot() // Inicialização correta do módulo Toastr
+    ToastrModule.forRoot({
+      timeOut: 3000,            // Duração da mensagem em milissegundos
+      positionClass: 'toast-top-right', // Posição no canto superior direito
+      preventDuplicates: true,  // Evita mensagens duplicadas
+      progressBar: true,        // Exibe a barra de progresso
+      closeButton: true,        // Exibe botão de fechar
+      tapToDismiss: true        // Fecha ao clicar na mensagem
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
