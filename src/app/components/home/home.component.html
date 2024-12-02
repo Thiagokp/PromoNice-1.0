@@ -1,2 +1,39 @@
-<br><br><br><br><br><br><br><br><br>
-<h1>HOME</h1>
+<div class="container">
+  <h1>Produtos Cadastrados</h1>
+
+  <div *ngIf="isEditando" class="formulario-edicao">
+    <h2>Editar Produto</h2>
+    <form (ngSubmit)="salvarProduto()">
+      <label for="nome">Nome:</label>
+      <input id="nome" type="text" [(ngModel)]="produtoEditado.nome" name="nome" required />
+
+      <label for="descricao">Descrição:</label>
+      <input id="descricao" type="text" [(ngModel)]="produtoEditado.descricao" name="descricao" required />
+
+      <label for="preco">Preço:</label>
+      <input id="preco" type="number" [(ngModel)]="produtoEditado.promocoes[0].preco" name="preco" required />
+
+      <button type="submit">Salvar</button>
+      <button type="button" (click)="cancelarEdicao()">Cancelar</button>
+    </form>
+  </div>
+  <div class="produto-container">
+    <div *ngFor="let produto of produtos" class="produto-card">
+      <p>Postado por: {{ produto.promocoes[0].Usuario?.nome}}</p>
+      <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
+      <h3>{{ produto.nome }}</h3>
+      <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol' }}</h2>
+      <p>{{ produto.descricao }}</p>
+
+      <!-- Ícones de like e dislike -->
+      <div class="icon-actions">
+        <button class="delete-btn" (click)="excluirProduto(produto.id)">
+          <fa-icon [icon]="faTrash" size="lg"></fa-icon> Excluir
+        </button>
+        <fa-icon [icon]="faThumbsUp" style="color: #ff4500; cursor: pointer" title="Like"></fa-icon>
+        <fa-icon [icon]="faThumbsDown" style="color: #ff4500; cursor: pointer" title="Dislike"></fa-icon>
+        <button (click)="editarProduto(produto)">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
