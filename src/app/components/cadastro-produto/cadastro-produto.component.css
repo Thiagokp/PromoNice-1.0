@@ -5,44 +5,44 @@ body {
     padding: 0;
     background-color: #f7f7f7;
   }
-  
+
   /* Estilo da seção de formulário */
-  #product-form {
+  #produto-form {
     max-width: 600px;
-    
+
     margin: 90px auto 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
-  
-  #product-form h2 {
+
+  #produto-form h2 {
     text-align: center;
     color: #333;
     margin: 50px 0 40px 0;
   }
-  
+
   .h2Cadastrar {
     font-family: Arial, sans-serif;
     font-weight: 800;
   }
-  
-  #product-form label {
+
+  #produto-form label {
     display: block;
     margin-bottom: 5px;
     color: #333;
   }
-  
-  #product-form input {
-    width: 100%;  
+
+  #produto-form input {
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
-  
-  #product-form .btn-cadastrar {
+
+  #produto-form .btn-cadastrar {
     width: 100%;
     padding: 12px;
     background-color: #ff4500;
@@ -54,28 +54,28 @@ body {
     font-weight: bold;
     transition: background-color 0.3s;
   }
-  
-  #product-form .btn-cadastrar:hover {
+
+  #produto-form .btn-cadastrar:hover {
     background-color: #e63900;
     transform: scale(1.03);
     transition: 0.3s;
   }
-  
-  #product-form .btn-cadastrar:active {
+
+  #produto-form .btn-cadastrar:active {
     transform: scale(1);
     transition: 0.3s;
   }
-  
+
   /* Estilo da lista de produtos */
-  #product-container {
+  #produto-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     padding: 60px;
   }
-  
-  .product-card {
+
+  .produto-card {
     width: 280px;
     background-color: #fff;
     border-radius: 8px;
@@ -85,29 +85,29 @@ body {
     padding: 15px;
     transition: transform 0.3s;
   }
-  
-  .product-card:hover {
+
+  .produto-card:hover {
     transform: translateY(-5px);
   }
-  
-  .product-card img {
+
+  .produto-card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
     border-radius: 8px;
   }
-  
-  .product-card h3 {
+
+  .produto-card h3 {
     font-size: 18px;
     margin: 10px 0;
     color: #333;
   }
-  
-  .product-card p {
+
+  .produto-card p {
     font-size: 14px;
     color: #555;
   }
-  
+
   .error-message{
     margin-left: 5px;
     margin-top: 10px;
@@ -124,12 +124,12 @@ body {
     gap: 20px;
     margin-top: 10px;
   }
-  
+
   .icon-actions fa-icon {
     font-size: 20px;
     transition: transform 0.3s;
   }
-  
+
   .icon-actions fa-icon:hover {
     transform: scale(1.2);
     color: #e63900;
@@ -138,10 +138,9 @@ body {
     color: red;
     font-size: 0.8em;
   }
-  
+
   .container{
    padding: 30px;
    margin-top: 100px;
   }
-  
-  
+
