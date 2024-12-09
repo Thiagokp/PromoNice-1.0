@@ -18,7 +18,8 @@
     </form>
   </div>
   <div class="produto-container">
-    <div *ngFor="let produto of produtos" class="produto-card">
+    <div *ngFor="let produto of produtos" class="produto-card"(click)="abrirPromocao(produto.promocoes[0]?.urlPromocao!)"
+      style="cursor: pointer;">
       <p>Postado por: {{ produto.promocoes[0].Usuario?.nome}}</p>
       <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
       <h3>{{ produto.nome }}</h3>
@@ -27,12 +28,12 @@
 
       <!-- Ícones de like e dislike -->
       <div class="icon-actions">
-        <button class="delete-btn" (click)="excluirProduto(produto.id)">
+        <button class="delete-btn" (click)="excluirProduto(produto.id);$event.stopPropagation()">
           <fa-icon [icon]="faTrash" size="lg"></fa-icon> Excluir
         </button>
         <fa-icon [icon]="faThumbsUp" style="color: #ff4500; cursor: pointer" title="Like"></fa-icon>
         <fa-icon [icon]="faThumbsDown" style="color: #ff4500; cursor: pointer" title="Dislike"></fa-icon>
-        <button (click)="editarProduto(produto)">Editar</button>
+        <button class="button-editar" (click)="editarProduto(produto);$event.stopPropagation()">Editar</button>
       </div>
     </div>
   </div>
