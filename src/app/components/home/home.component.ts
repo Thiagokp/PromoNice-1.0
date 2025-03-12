@@ -21,7 +21,7 @@ export class HomeComponent {
   produtos: Produto[] = []; // Array para armazenar os produtos
 
   isEditando: boolean = false; // Controle para exibir o formulário de edição
-  produtoEditado: any = { nome: '', descricao: '', promocoes: [{ preco: 0 }] }; // Produto que está sendo editado
+  produtoEditado: any = { nome: '', descricao: '', promocoes: [{ preco: 0, urlPromocao: '' }] }; // Produto que está sendo editado
 
   constructor(
     private produtoService: ProdutoService,
@@ -58,7 +58,7 @@ export class HomeComponent {
       !this.produtoEditado.promocoes ||
       this.produtoEditado.promocoes.length === 0
     ) {
-      this.produtoEditado.promocoes = [{ preco: 0 }];
+      this.produtoEditado.promocoes = [{ preco: 0, urlPromocao: ''  }];
     }
 
     this.produtoService
@@ -76,7 +76,7 @@ export class HomeComponent {
           }
 
           this.isEditando = false; // Fecha o formulário de edição
-          this.produtoEditado = null; // Reseta o produto editado
+          //this.produtoEditado = null; // Reseta o produto editado
         },
         error: (err) => {
           console.error('Erro ao alterar o produto:', err);

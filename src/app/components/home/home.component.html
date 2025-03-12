@@ -10,6 +10,9 @@
       <label for="descricao">Descrição:</label>
       <input id="descricao" type="text" [(ngModel)]="produtoEditado.descricao" name="descricao" required />
 
+      <label for="urlPromocao">URL promoção:</label>
+      <input id="urlPromocao" type="string" [(ngModel)]="produtoEditado.promocoes[0].urlPromocao" name="urlPromocao" required />
+
       <label for="preco">Preço:</label>
       <input id="preco" type="number" [(ngModel)]="produtoEditado.promocoes[0].preco" name="preco" required />
 
@@ -20,8 +23,8 @@
   <div class="produto-container">
     <div *ngFor="let produto of produtos" class="produto-card"(click)="abrirPromocao(produto.promocoes[0]?.urlPromocao!)"
       style="cursor: pointer;">
-      <p>Postado por: {{ produto.promocoes[0].Usuario?.nome}}</p>
-      <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
+      <p>Postado por: {{ produto.promocoes[0]?.usuario?.nome}}</p>
+      <img [src]="produto.urlProduto" alt="{{ produto.nome }}"/>
       <h3>{{ produto.nome }}</h3>
       <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol' }}</h2>
       <p>{{ produto.descricao }}</p>
