@@ -1,3 +1,4 @@
+import { Usuario } from './usuario';
 import { Promocao } from './promocao';
 export interface Produto {
 
@@ -6,4 +7,5 @@ export interface Produto {
   descricao: string;
   urlProduto: string;
   promocoes: Promocao[];
+  usuario?: Usuario
 }

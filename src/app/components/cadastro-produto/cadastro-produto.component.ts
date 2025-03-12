@@ -1,3 +1,4 @@
+import { Promocao } from './../../models/promocao';
 import { Usuario } from './../../models/usuario';
 import { Component, OnInit } from '@angular/core';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +7,6 @@ import { ProdutoService } from '../../services/produto.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Promocao } from '../../models/promocao';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -30,7 +30,7 @@ export class CadastroProdutoComponent implements OnInit {
       {
         id: 0,
         Produto: {} as Produto,
-        Usuario: {} as Usuario,
+        usuario: {} as Usuario,
         preco: 0,
         urlPromocao: '',
         dataInicio: new Date(),
@@ -78,12 +78,13 @@ export class CadastroProdutoComponent implements OnInit {
     }
 
     if (this.usuario) {
-      this.produto.promocoes[0].Usuario = this.usuario; // Associa o usuário logado à promoção
+      this.produto.promocoes[0].usuario = this.usuario; // Associa o usuário logado à promoção
 
       this.produtoService
         .cadastrarProduto(this.usuario.id, this.produto)
         .subscribe({
           next: (res) => {
+            console.log(this.produto.promocoes[0].id)
             console.log(this.produto);
             console.log('Produto cadastrado com sucesso:', res);
             this.produto.id = res.id;
@@ -124,7 +125,7 @@ export class CadastroProdutoComponent implements OnInit {
         {
           id: 0,
           Produto: {} as Produto,
-          Usuario: {} as Usuario,
+          usuario: {} as Usuario,
           preco: 0,
           urlPromocao: '',
           dataInicio: new Date(),
