@@ -4,6 +4,7 @@ import {
   faThumbsDown,
   faThumbsUp,
   faTrash,
+  faPencil,
 } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Produto } from '../../models/cadastro-produto.model';
@@ -17,11 +18,16 @@ export class HomeComponent {
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   faTrash = faTrash;
+  faPencil = faPencil;
 
   produtos: Produto[] = []; // Array para armazenar os produtos
 
   isEditando: boolean = false; // Controle para exibir o formulário de edição
-  produtoEditado: any = { nome: '', descricao: '', promocoes: [{ preco: 0, urlPromocao: '' }] }; // Produto que está sendo editado
+  produtoEditado: any = {
+    nome: '',
+    descricao: '',
+    promocoes: [{ preco: 0, urlPromocao: '' }],
+  }; // Produto que está sendo editado
 
   constructor(
     private produtoService: ProdutoService,
@@ -58,7 +64,7 @@ export class HomeComponent {
       !this.produtoEditado.promocoes ||
       this.produtoEditado.promocoes.length === 0
     ) {
-      this.produtoEditado.promocoes = [{ preco: 0, urlPromocao: ''  }];
+      this.produtoEditado.promocoes = [{ preco: 0, urlPromocao: '' }];
     }
 
     this.produtoService
@@ -91,16 +97,22 @@ export class HomeComponent {
   }
 
   excluirProduto(id: number): void {
-    this.produtoService.deletarProduto(id).subscribe({
-      next: (res) => {
-        this.toastr.success('Produto deletado com sucesso', 'Sucesso');
-        this.listarProdutos(); // Atualiza a lista de produtos após a exclusão
-      },
-      error: (err) => {
-        console.error('Erro ao excluir o produto:', err);
-        this.toastr.error('Erro ao excluir o produto', 'Erro');
-      },
-    });
+    const confirmacao = window.confirm(
+      'Você tem certeza que deseja excluir essa promoção?'
+    );
+
+    if (confirmacao) {
+      this.produtoService.deletarProduto(id).subscribe({
+        next: () => {
+          this.toastr.success('Produto deletado com sucesso', 'Sucesso');
+          this.listarProdutos(); // Atualiza a lista de produtos após a exclusão
+        },
+        error: (err) => {
+          console.error('Erro ao excluir o produto:', err);
+          this.toastr.error('Erro ao excluir o produto', 'Erro');
+        },
+      });
+    }
   }
 
   buscarProdutoPorId(id: number) {
