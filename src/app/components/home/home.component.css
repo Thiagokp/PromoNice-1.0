@@ -151,10 +151,6 @@ h1 {
   margin: 20px auto;
 }
 
-.formulario-edicao h2 {
-  text-align: center;
-  margin-bottom: 16px;
-}
 
 .formulario-edicao label {
   display: block;
@@ -183,9 +179,27 @@ h1 {
 .formulario-edicao button[type="submit"] {
   background-color: #4CAF50;
   color: white;
+  margin: 7px;
 }
 
 .formulario-edicao button[type="button"] {
   background-color: #f44336;
   color: white;
+}
+
+.editar-btn {
+  background-color: #007bff; /* Cor vermelha para indicar exclusão */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.editar-btn:hover {
+  background-color: blue; /* Cor mais escura ao passar o mouse */
 }

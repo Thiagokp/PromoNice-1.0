@@ -19,7 +19,7 @@ export class HeaderComponent {
   faThumbsUp = faThumbsUp;
   faThumbsDown = faThumbsDown;
   faPlus = faPlus
-  
+
   constructor(private dialog: MatDialog) {}
 
   abrirModal(): void {
@@ -28,7 +28,7 @@ export class HeaderComponent {
       height: '500px',
     });
   }
-  
+
   onSearch() {
     const searchInput = (document.querySelector('.search-input') as HTMLInputElement).value;
     console.log('Buscando por:', searchInput);

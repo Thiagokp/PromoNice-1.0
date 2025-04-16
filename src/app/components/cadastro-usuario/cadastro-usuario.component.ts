@@ -53,15 +53,7 @@ export class CadastroUsuarioComponent implements OnInit {
     if (this.cadastroForm.valid) {
       const { nome, email, senha } = this.cadastroForm.value;
 
-      // Recuperar o ID do usuário logado
-      const id = localStorage.getItem('id');
-      if (!id) {
-        this.toastr.error('Usuário não autenticado!', 'Erro');
-        return;
-      }
-
-      // Enviar o ID do usuário junto com os dados do cadastro
-      this.usuarioService.salvar({ id, nome, email, senha }).subscribe(
+      this.usuarioService.salvar({ nome, email, senha }).subscribe(
         (response) => {
           this.toastr.success('Usuário salvo com sucesso!', 'Sucesso');
           this.mudarForms();
