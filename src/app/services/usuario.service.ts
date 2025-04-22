@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  private api = 'http://localhost:8080/api/usuario';
+  private api = `${environment.apiUrl}/usuario`;
 
 
   listarTodos(): Observable<any> {

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Produto } from '../models/cadastro-produto.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ProdutoService {
 
   constructor(private http: HttpClient) { }
 
-  private api = 'http://localhost:8080/api/produtos';
+  private api = `${environment.apiUrl}/produtos`;
 
   listarTodosProdutos(): Observable<any> {
     return this.http.get(`${this.api}/listar-todos`);
