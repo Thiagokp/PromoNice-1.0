@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://promonice3-aievus-projects.vercel.app/'
+  apiUrl: 'https://promonice4-aievus-projects.vercel.app/'
 };
