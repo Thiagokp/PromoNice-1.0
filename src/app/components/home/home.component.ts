@@ -35,6 +35,11 @@ export class HomeComponent {
   ) {}
 
   ngOnInit(): void {
+    if (this.produtoEditado?.promocoes[0]?.preco !== undefined) {
+      const preco = Number(this.produtoEditado.promocoes[0].preco).toFixed(2);
+      // Converte para string com vírgula como separador decimal
+      this.produtoEditado.promocoes[0].preco = preco.replace('.', ',');
+    }
     this.listarProdutos(); // Carrega os produtos ao iniciar a página
   }
 
@@ -129,5 +134,25 @@ export class HomeComponent {
     } else {
       this.toastr.warning('URL não disponível.', 'Atenção');
     }
+  }
+
+  formatarPreco(valor: any): string {
+    if (valor == null || valor === '') return '';
+
+    const numero = Number(valor.toString().replace(/\D/g, '')) / 100;
+    return numero.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+  }
+
+  atualizarPrecoEditar(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const valor = input.value;
+
+    const valorNumerico = parseFloat(
+      valor.replace(/[R$\s.]/g, '').replace(',', '.')
+    );
+    this.produtoEditado.promocoes[0].preco = isNaN(valorNumerico) ? 0 : valorNumerico;
   }
 }

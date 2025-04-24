@@ -15,7 +15,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';  // Importando a localidade corretamente
+import { LOCALE_ID } from '@angular/core';
+// Registra o locale para pt-BR
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -42,9 +47,11 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: true,        // Exibe a barra de progresso
       closeButton: true,        // Exibe botão de fechar
       tapToDismiss: true        // Fecha ao clicar na mensagem
-    })
+    }),
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [ provideNgxMask(), {provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

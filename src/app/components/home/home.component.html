@@ -5,7 +5,7 @@
     <h2>Editar Produto</h2>
     <form (ngSubmit)="salvarProduto()">
       <label for="nome">Nome:</label>
-      <input id="nome" type="text" [(ngModel)]="produtoEditado.nome" name="nome" required />
+      <input id="nome" type="text" [(ngModel)]="produtoEditado.nome" name="nome" maxlength="35" required />
 
       <label for="descricao">Descrição:</label>
       <input id="descricao" type="text" [(ngModel)]="produtoEditado.descricao" name="descricao" required />
@@ -14,7 +14,17 @@
       <input id="urlPromocao" type="string" [(ngModel)]="produtoEditado.promocoes[0].urlPromocao" name="urlPromocao" required />
 
       <label for="preco">Preço:</label>
-      <input id="preco" type="number" [(ngModel)]="produtoEditado.promocoes[0].preco" name="preco" required [value]="produtoEditado.promocoes[0].preco | currency:'BRL':'symbol'"/>
+      <input
+      id="preco"
+      type="text"
+      mask="separator.2"
+      prefix="R$ "
+      [thousandSeparator]="'.'"
+      [decimalMarker]="','"
+      [(ngModel)]="produtoEditado.promocoes[0].preco"
+      name="preco"
+      required
+    />
 
       <button type="submit">Salvar</button>
       <button type="button" (click)="cancelarEdicao()">Cancelar</button>
@@ -26,7 +36,7 @@
       <p>Postado por: {{ produto.promocoes[0]?.usuario?.nome}}</p>
       <img [src]="produto.urlProduto" alt="{{ produto.nome }}"/>
       <h3>{{ produto.nome }}</h3>
-      <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol' }}</h2>
+      <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
       <p>{{ produto.descricao }}</p>
 
       <!-- Ícones de like e dislike -->
