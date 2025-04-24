@@ -12,11 +12,18 @@
             name="promotionLink{{i}}" required />
 
           <label for="product-name">Nome do Produto:</label>
-          <input type="text" id="product-name" placeholder="Nome do Produto" [(ngModel)]="produto.nome" name="name" required />
+          <input type="text" id="product-name" placeholder="Nome do Produto" maxlength="35" [(ngModel)]="produto.nome" name="name" required />
 
           <label for="product-price-{{i}}">Preço:</label>
-          <input type="text" id="product-price-{{i}}" placeholder="Preço da Promoção" [(ngModel)]="produto.promocoes[i].preco"
-            name="price{{i}}" mask="separator.2" prefix="R$ " required />
+          <input
+          type="text"
+          #precoInput
+          [value]="formatarPreco(produto.promocoes[i].preco)"
+          (input)="atualizarPreco(precoInput.value, i)"
+          name="price{{i}}"
+          placeholder="Preço da Promoção"
+          required
+        />
 
           <label for="product-description">Vendido por:</label>
           <input type="text" id="product-description" placeholder="ex: Magazine Luiza" [(ngModel)]="produto.descricao"
@@ -38,7 +45,7 @@
     <div *ngFor="let promocao of produto.promocoes" class="produto-card" (click)="openPromotionLink(promocao.urlPromocao)">
       <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
       <h3>{{ produto.nome }}</h3>
-      <h2>Preço: {{ promocao.preco | currency:'BRL':'symbol' }}</h2>
+      <h2>Preço: {{ promocao.preco / 100 | currency:'BRL':'symbol':'1.2-2' }}</h2> <!-- Aqui dividimos por 100 -->
       <p>{{ produto.descricao }}</p>
 
       <!-- Ícones de like e dislike -->

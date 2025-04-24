@@ -160,4 +160,27 @@ export class CadastroProdutoComponent implements OnInit {
   openPromotionLink(link: string): void {
     window.open(link, '_blank');
   }
+
+ // Método para formatar o valor do preço com o prefixo 'R$' (visual)
+formatarPreco(valor: any): string {
+  if (valor == null || valor === '') return '';
+
+  const numero = Number(valor.toString().replace(/\D/g, '')) / 100;
+  return numero.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+}
+
+// Método para atualizar o preço ao digitar
+atualizarPreco(valorDigitado: string, index: number): void {
+  // Remove tudo que não é número e converte para centavos (sem vírgula e sem símbolos)
+  const somenteNumeros = valorDigitado.replace(/\D/g, '');
+
+  // Converte o valor para número (em centavos)
+  const valor = Number(somenteNumeros);
+
+  // Atualiza o valor no modelo
+  this.produto.promocoes[index].preco = valor;
+}
 }
