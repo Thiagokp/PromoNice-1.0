@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Produtos Cadastrados</h1>
 
+  <!-- Formulário de Edição -->
   <div *ngIf="isEditando" class="formulario-edicao">
     <h2>Editar Produto</h2>
     <form (ngSubmit)="salvarProduto()">
@@ -15,42 +16,63 @@
 
       <label for="preco">Preço:</label>
       <input
-      id="preco"
-      type="text"
-      mask="separator.2"
-      prefix="R$ "
-      [thousandSeparator]="'.'"
-      [decimalMarker]="','"
-      [(ngModel)]="produtoEditado.promocoes[0].preco"
-      name="preco"
-      required
-    />
+        id="preco"
+        type="text"
+        mask="separator.2"
+        prefix="R$ "
+        [thousandSeparator]="'.'"
+        [decimalMarker]="','"
+        [(ngModel)]="produtoEditado.promocoes[0].preco"
+        name="preco"
+        required
+      />
 
       <button type="submit">Salvar</button>
       <button type="button" (click)="cancelarEdicao()">Cancelar</button>
     </form>
   </div>
+
+  <!-- Produtos Cadastrados -->
   <div class="produto-container">
-    <div *ngFor="let produto of produtos" class="produto-card"(click)="abrirPromocao(produto.promocoes[0]?.urlPromocao!)"
-      style="cursor: pointer;">
-      <p>Postado por: {{ produto.promocoes[0]?.usuario?.nome}}</p>
-      <img [src]="produto.urlProduto" alt="{{ produto.nome }}"/>
+    <div *ngFor="let produto of produtos"
+         class="produto-card"
+         (click)="abrirPromocao(produto.promocoes[0]?.urlPromocao!)"
+         style="cursor: pointer; position: relative;">
+
+      <!-- Ícone de Coração no Topo Direito -->
+      <fa-icon
+        [icon]="faHeart"
+        [ngStyle]="{ color: produto ? '#ff0000' : '#ff4500', cursor: 'pointer', position: 'absolute', top: '10px', right: '10px' }"
+        (click)="toggleFavorito(produto); $event.stopPropagation()"
+        title="Favorito">
+      </fa-icon>
+
+      <!-- Postado por -->
+      <p style="margin: 0; padding-top: 30px;">Postado por: {{ produto.promocoes[0]?.usuario?.nome }}</p>
+
+      <!-- Imagem do Produto -->
+      <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
+
+      <!-- Nome do Produto -->
       <h3>{{ produto.nome }}</h3>
+
+      <!-- Preço do Produto -->
       <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
+
+      <!-- Descrição -->
       <p>{{ produto.descricao }}</p>
 
-      <!-- Ícones de like e dislike -->
+      <!-- Botões de ação -->
       <div class="icon-actions">
-        <button class="delete-btn" (click)="excluirProduto(produto.id);$event.stopPropagation()">
+        <button class="delete-btn" (click)="excluirProduto(produto.id); $event.stopPropagation()">
           <fa-icon [icon]="faTrash" size="lg"></fa-icon> Excluir
         </button>
-        <fa-icon [icon]="faThumbsUp" style="color: #ff4500; cursor: pointer" title="Like"></fa-icon>
-        <fa-icon [icon]="faThumbsDown" style="color: #ff4500; cursor: pointer" title="Dislike"></fa-icon>
-        <button class="editar-btn" (click)="editarProduto(produto);$event.stopPropagation()">
+
+        <button class="editar-btn" (click)="editarProduto(produto); $event.stopPropagation()">
           <fa-icon [icon]="faPencil" size="lg"></fa-icon> Editar
         </button>
-
       </div>
+
     </div>
   </div>
 </div>
