@@ -10,7 +10,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { CadastroUsuarioComponent } from './components/cadastro-usuario/cadastro-usuario.component';
 import { RouterModule } from '@angular/router';
 import { CadastroProdutoComponent } from './components/cadastro-produto/cadastro-produto.component';
-import { ModalConfiguracaoComponent } from './components/header/modal-configuracao/modal-configuracao.component';
+
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,7 +28,7 @@ registerLocaleData(localePt, 'pt-BR');
     HomeComponent,
     CadastroUsuarioComponent,
     CadastroProdutoComponent,
-    ModalConfiguracaoComponent,
+
   ],
   imports: [
     BrowserModule,
