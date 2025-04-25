@@ -5,6 +5,7 @@ import {
   faThumbsUp,
   faTrash,
   faPencil,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Produto } from '../../models/cadastro-produto.model';
@@ -19,6 +20,7 @@ export class HomeComponent {
   faThumbsDown = faThumbsDown;
   faTrash = faTrash;
   faPencil = faPencil;
+  faHeart = faHeart;
 
   produtos: Produto[] = []; // Array para armazenar os produtos
 
@@ -154,5 +156,9 @@ export class HomeComponent {
       valor.replace(/[R$\s.]/g, '').replace(',', '.')
     );
     this.produtoEditado.promocoes[0].preco = isNaN(valorNumerico) ? 0 : valorNumerico;
+  }
+
+  toggleFavorito(produto: any) {
+    produto.favorito = !produto.favorito;
   }
 }

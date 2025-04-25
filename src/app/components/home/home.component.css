@@ -24,8 +24,12 @@ h1 {
 
 /* Estilo para cada card de produto */
 .produto-card {
-  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 480px; /* altura fixa para alinhar tudo */
   padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -40,9 +44,10 @@ h1 {
 /* Estilo para a imagem do produto */
 .produto-card img {
   width: 100%;
-  max-height: 200px;
-  object-fit: cover;
+  height: 150px; /* altura fixa */
+  object-fit: contain;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 /* Nome do produto */
@@ -50,6 +55,9 @@ h1 {
   font-size: 1.5rem;
   margin-top: 10px;
   color: #333;
+  height: 110px; /* fixa o espaço do nome */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Preço do produto */
@@ -59,37 +67,23 @@ h1 {
   margin: 10px 0;
 }
 
-/* Estilo para a imagem do produto */
-.produto-card img {
-  width: 100%;
-  max-height: 200px; /* Ajuste de altura para garantir que a imagem não sobreponha o conteúdo */
-  object-fit: cover; /* Mantém a imagem proporcional */
-  border-radius: 5px;
-  margin-bottom: 15px; /* Para dar um espaço entre a imagem e o conteúdo abaixo */
-}
-
 /* Descrição do produto */
 .produto-card p {
   font-size: 1rem;
   color: #555;
-  margin-bottom: 20px;
-  overflow: hidden; /* Evita que o texto ultrapasse os limites do card */
-  text-overflow: ellipsis; /* Coloca "..." quando o texto é muito longo */
-  white-space: nowrap; /* Impede que o texto quebre a linha */
+  height: 70px; /* altura fixa */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 10px;
+  white-space: nowrap;
 }
 
-/* Descrição do produto */
-.produto-card p {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-/* Contêiner para os ícones de like e dislike */
+/* Container dos botões */
 .icon-actions {
+  margin-top: auto;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 /* Estilo para os ícones */
@@ -105,7 +99,7 @@ h1 {
 
 /* Estilo para o botão de excluir */
 .delete-btn {
-  background-color: #dc3545; /* Cor vermelha para indicar exclusão */
+  background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 5px;
@@ -118,29 +112,28 @@ h1 {
 }
 
 .delete-btn:hover {
-  background-color: #c82333; /* Cor mais escura ao passar o mouse */
+  background-color: #c82333;
 }
 
-/* Ícone de trash */
-.delete-btn fa-icon {
-  color: white;
-}
-
-.produto-card p:last-child {
-  font-size: 1rem;
-  color: #007bff;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.button-editar {
+/* Estilo para o botão de editar */
+.editar-btn {
   background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
 }
 
+.editar-btn:hover {
+  background-color: blue;
+}
 
-
-
+/* Formulário de edição */
 .formulario-edicao {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -150,7 +143,6 @@ h1 {
   max-width: 400px;
   margin: 20px auto;
 }
-
 
 .formulario-edicao label {
   display: block;
@@ -185,21 +177,4 @@ h1 {
 .formulario-edicao button[type="button"] {
   background-color: #f44336;
   color: white;
-}
-
-.editar-btn {
-  background-color: #007bff; /* Cor vermelha para indicar exclusão */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.editar-btn:hover {
-  background-color: blue; /* Cor mais escura ao passar o mouse */
 }
