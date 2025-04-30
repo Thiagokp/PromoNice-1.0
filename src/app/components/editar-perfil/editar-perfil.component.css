@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.container {
+  margin: 220px auto 0 auto;
+  width: 100%;
+  max-width: 450px;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Form group padrão */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Label */
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+  font-size: 1.05em;
+}
+
+/* Campo de entrada */
+input,
+input.form-control {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Campo em foco */
+input:focus,
+input.form-control:focus {
+  border-color: #ffc371;
+  box-shadow: 0 0 5px rgba(255, 195, 113, 0.5);
+  outline: none;
+}
+
+/* Mensagens de erro */
+small.text-danger {
+  color: #e74c3c;
+  font-size: 0.9em;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Botão principal (submit) */
+button.btn,
+button.btn.btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(to right, #ffc371, #ff5f6d);
+  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Hover do botão */
+button.btn:hover,
+button.btn.btn-primary:hover {
+  background: #fff;
+  color: #ff5f6d;
+  border: 1px solid #ff5f6d;
+}
+
+/* Botão desabilitado */
+button.btn.btn-primary:disabled {
+  background-color: #d6d6d6;
+  color: #999;
+  cursor: not-allowed;
+  border: none;
+}
+
+/* Grupo de botões (separar salvar/cancelar) */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.btn.cancel {
+  background-color: #eee;
+  color: #444;
+}
+
+.btn.cancel:hover {
+  background-color: #ccc;
+}
+
+#senhaAntiga {
+  border: 2px solid #dc3545;
+}
+
+#senhaAntiga:focus {
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+}
