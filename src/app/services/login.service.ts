@@ -16,4 +16,14 @@ export class LoginService {
   login(email: string, senha: string): Observable<any> {
     return this.http.post(this.api, { email, senha });
   }
+
+isUsuarioLogado(): boolean {
+  return localStorage.getItem('usuario') !== null;
+}
+
+getUsuarioLogado(): any {
+  return JSON.parse(localStorage.getItem('usuario') || '{}');
+}
+
+
 }
