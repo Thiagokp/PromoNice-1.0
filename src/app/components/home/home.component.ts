@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Produto } from '../../models/cadastro-produto.model';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-home',
@@ -33,10 +34,12 @@ export class HomeComponent {
 
   constructor(
     private produtoService: ProdutoService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
+
     if (this.produtoEditado?.promocoes[0]?.preco !== undefined) {
       const preco = Number(this.produtoEditado.promocoes[0].preco).toFixed(2);
       // Converte para string com vírgula como separador decimal
@@ -64,63 +67,83 @@ export class HomeComponent {
     this.isEditando = true; // Ativa o formulário de edição
   }
 
-  salvarProduto(): void {
-    if (!this.produtoEditado?.id) return;
+salvarProduto(): void {
+  if (!this.produtoEditado?.id) return;
 
-    if (
-      !this.produtoEditado.promocoes ||
-      this.produtoEditado.promocoes.length === 0
-    ) {
-      this.produtoEditado.promocoes = [{ preco: 0, urlPromocao: '' }];
-    }
-
-    this.produtoService
-      .alterarProduto(this.produtoEditado.id, this.produtoEditado)
-      .subscribe({
-        next: () => {
-          this.toastr.success('Produto alterado com sucesso!', 'Sucesso');
-
-          // Atualiza o produto no array 'produtos'
-          const index = this.produtos.findIndex(
-            (prod) => prod.id === this.produtoEditado.id
-          );
-          if (index !== -1) {
-            this.produtos[index] = { ...this.produtoEditado };
-          }
-
-          this.isEditando = false; // Fecha o formulário de edição
-          //this.produtoEditado = null; // Reseta o produto editado
-        },
-        error: (err) => {
-          console.error('Erro ao alterar o produto:', err);
-          this.toastr.error('Erro ao alterar o produto', 'Erro');
-        },
-      });
+  if (
+    !this.produtoEditado.promocoes ||
+    this.produtoEditado.promocoes.length === 0
+  ) {
+    this.produtoEditado.promocoes = [{ preco: 0, urlPromocao: '' }];
   }
+
+  // Pega o usuário logado do localStorage
+  const usuario = localStorage.getItem('usuario');
+  if (!usuario) {
+    this.toastr.error('Usuário não logado', 'Erro');
+    return;
+  }
+  const usuarioObj = JSON.parse(usuario);
+  const usuarioId = usuarioObj.id;
+
+  this.produtoService
+    .alterarProduto(this.produtoEditado.id, this.produtoEditado, usuarioId)
+    .subscribe({
+      next: () => {
+        this.toastr.success('Produto alterado com sucesso!', 'Sucesso');
+
+        // Atualiza o produto no array 'produtos'
+        const index = this.produtos.findIndex(
+          (prod) => prod.id === this.produtoEditado.id
+        );
+        if (index !== -1) {
+          this.produtos[index] = { ...this.produtoEditado };
+        }
+
+        this.isEditando = false; // Fecha o formulário de edição
+        //this.produtoEditado = null; // Reseta o produto editado
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.toastr.error('Você não tem permissão para alterar esse produto.', 'Acesso negado');
+        } else {
+          this.toastr.error('Erro ao alterar o produto', 'Erro');
+        }
+        console.error('Erro ao alterar o produto:', err);
+      },
+    });
+}
 
   // Método para cancelar a edição
   cancelarEdicao(): void {
     this.isEditando = false; // Desativa o formulário de edição
   }
 
-  excluirProduto(id: number): void {
-    const confirmacao = window.confirm(
-      'Você tem certeza que deseja excluir essa promoção?'
-    );
+excluirProduto(id: number): void {
+  const confirmacao = window.confirm(
+    'Você tem certeza que deseja excluir essa promoção?'
+  );
 
-    if (confirmacao) {
-      this.produtoService.deletarProduto(id).subscribe({
-        next: () => {
-          this.toastr.success('Produto deletado com sucesso', 'Sucesso');
-          this.listarProdutos(); // Atualiza a lista de produtos após a exclusão
-        },
-        error: (err) => {
-          console.error('Erro ao excluir o produto:', err);
-          this.toastr.error('Erro ao excluir o produto', 'Erro');
-        },
-      });
+  if (confirmacao) {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+
+    if (!usuario.id) {
+      this.toastr.error('Usuário não encontrado. Faça login novamente.', 'Erro');
+      return;
     }
+
+    this.produtoService.deletarProduto(id, usuario.id).subscribe({
+      next: () => {
+        this.toastr.success('Produto deletado com sucesso', 'Sucesso');
+        this.listarProdutos();
+      },
+      error: (err) => {
+        console.error('Erro ao excluir o produto:', err);
+        this.toastr.error('Erro ao excluir o produto', 'Erro');
+      },
+    });
   }
+}
 
   buscarProdutoPorId(id: number) {
     this.produtoService.consultarProdutoPorId(id).subscribe({

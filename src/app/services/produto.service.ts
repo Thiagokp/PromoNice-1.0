@@ -5,11 +5,10 @@ import { Produto } from '../models/cadastro-produto.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProdutoService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private api = `${environment.apiUrl}/produtos`;
 
@@ -25,11 +24,17 @@ export class ProdutoService {
     return this.http.post(`${this.api}/cadastrar/${id}`, produto);
   }
 
-  alterarProduto(id: number, produto: Produto): Observable<any> {
-    return this.http.put(`${this.api}/alterar/${id}`, produto);
-  }
+ alterarProduto(id: number, produto: Produto, usuarioId: number): Observable<any> {
+  return this.http.put(`${this.api}/alterar/${id}`, produto, {
+    headers: { 'usuario-id': usuarioId.toString() }
+  });
+}
 
-  deletarProduto(id: number): Observable<any> {
-    return this.http.delete(`${this.api}/deletar/${id}`);
+  deletarProduto(id: number, usuarioId: number): Observable<any> {
+    const headers = {
+      'usuario-id': usuarioId.toString(),
+    };
+
+    return this.http.delete(`${this.api}/deletar/${id}`, { headers });
   }
 }
