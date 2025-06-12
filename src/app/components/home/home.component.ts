@@ -65,6 +65,9 @@ export class HomeComponent {
     console.log('isEditando:', this.isEditando);
     this.produtoEditado = { ...produto }; // Clona o produto para evitar alterações diretas
     this.isEditando = true; // Ativa o formulário de edição
+    setTimeout(() => {  //rola para o topo da pagina
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 100);
   }
 
 salvarProduto(): void {
