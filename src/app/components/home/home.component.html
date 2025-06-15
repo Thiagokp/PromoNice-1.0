@@ -57,7 +57,7 @@
       <h3>{{ produto.nome }}</h3>
 
       <!-- Preço do Produto -->
-      <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
+      <h2>Preço: {{ (produto.promocoes[0]?.preco! /100) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
 
       <!-- Descrição -->
       <p>{{ produto.descricao }}</p>
