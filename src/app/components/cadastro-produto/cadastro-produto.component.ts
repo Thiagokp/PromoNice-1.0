@@ -47,16 +47,15 @@ export class CadastroProdutoComponent implements OnInit {
     private router:  Router
   ) {}
 
-  ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      const id = params['id'] || localStorage.getItem('id'); // Recupera o ID do localStorage caso não esteja na URL
-      if (id) {
-        this.getUsuarioLogado(Number(id));
-      } else {
-        this.toastr.error('Usuário não autenticado!', 'Erro');
-      }
-    });
+ngOnInit(): void {
+  const usuarioLogado = localStorage.getItem('usuario');
+  if (usuarioLogado) {
+    this.usuario = JSON.parse(usuarioLogado);
+    console.log('Usuário carregado do localStorage:', this.usuario);
+  } else {
+    this.toastr.error('Usuário não autenticado!', 'Erro');
   }
+}
 
   getUsuarioLogado(id: number) {
     this.usuarioService.consultarPorId(id).subscribe({
@@ -71,6 +70,8 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   cadastrarProduto() {
+    console.log('Entrou no método cadastrarProduto');
+    console.log('Usuário atual:', this.usuario);
     if (!this.isFormValid()) {
       this.isClicked = true;
       this.toastr.error('Preencha todos os campos corretamente.', 'Erro');
@@ -84,8 +85,9 @@ export class CadastroProdutoComponent implements OnInit {
         .cadastrarProduto(this.usuario.id, this.produto)
         .subscribe({
           next: (res) => {
-            console.log(this.produto.promocoes[0].id)
-            console.log(this.produto);
+            console.log('valor usuario', this.usuario!.id);
+            console.log('id da promoção',this.produto.promocoes[0].id)
+            console.log('produto',this.produto);
             console.log('Produto cadastrado com sucesso:', res);
             this.produto.id = res.id;
             this.toastr.success('Produto cadastrado com sucesso!', 'Sucesso');
