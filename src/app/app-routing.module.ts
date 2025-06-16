@@ -4,12 +4,14 @@ import { CadastroUsuarioComponent } from './components/cadastro-usuario/cadastro
 import { HomeComponent } from './components/home/home.component';
 import { CadastroProdutoComponent } from './components/cadastro-produto/cadastro-produto.component';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
   { path: 'cadastro-produto', component: CadastroProdutoComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },
+  { path: 'favoritos', component: FavoritosComponent },
   { path: '', component: HomeComponent },
 ];
 

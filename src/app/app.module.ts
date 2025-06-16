@@ -20,6 +20,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt'; // Importando a localidade corretamente
 import { LOCALE_ID } from '@angular/core';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 // Registra o locale para pt-BR
 registerLocaleData(localePt, 'pt-BR');
 
@@ -30,6 +31,7 @@ registerLocaleData(localePt, 'pt-BR');
     CadastroUsuarioComponent,
     CadastroProdutoComponent,
     EditarPerfilComponent,
+    FavoritosComponent,
   ],
   imports: [
     BrowserModule,
