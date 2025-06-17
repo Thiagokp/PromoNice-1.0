@@ -26,7 +26,7 @@ export class EditarPerfilComponent implements OnInit {
     const usuario = this.loginService.getUsuarioLogado();
 
     if (!usuario || !usuario.id) {
-      this.toastr.error('Usuário não está logado.', 'Erro');
+      this.toastr.error('Usuário não logado!', 'Erro');
       this.router.navigate(['/login']);
       return;
     }
