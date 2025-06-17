@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
   { path: 'cadastro-produto', component: CadastroProdutoComponent, canActivate: [AuthGuard] },
-  { path: 'editar-perfil', component: EditarPerfilComponent },
+  { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [AuthGuard] },
   { path: 'favoritos', component: FavoritosComponent, canActivate: [AuthGuard] },
   { path: '', component: HomeComponent },
 ];

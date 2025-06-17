@@ -11,11 +11,12 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginService } from '../../services/login.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FontAwesomeModule, RouterModule, MatDialogModule, MatButtonModule],
+  imports: [FontAwesomeModule, RouterModule, MatDialogModule, MatButtonModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -30,6 +31,12 @@ export class HeaderComponent {
     private loginService: LoginService,
     private router: Router
   ) {}
+
+  isLogado: boolean = false;
+
+  ngOnInit() {
+    this.isLogado = !!localStorage.getItem('usuario');
+}
 
   verificarLoginOuRedirecionar(): void {
     if (this.loginService.isUsuarioLogado()) {
@@ -47,9 +54,9 @@ export class HeaderComponent {
     }
   }
 
-  isLogado(): boolean {
-    return this.loginService.isUsuarioLogado();
-  }
+  // isLogado(): boolean {
+  //   return this.loginService.isUsuarioLogado();
+  // }
 
   logout(): void {
     this.loginService.logout();
