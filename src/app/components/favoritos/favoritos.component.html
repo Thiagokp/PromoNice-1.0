@@ -7,8 +7,8 @@
 
          <!-- Ícone de Coração no Topo Direito -->
       <fa-icon
-        [icon]="faHeart"
-        [ngStyle]="{ color: '#ff0000', cursor: 'pointer', position: 'absolute', top: '10px', right: '10px' }"
+        [icon]="produto.favorito ? faHeart : faHeartRegular"
+        [ngStyle]="{ color: produto.favorito ? '#ff0000' : '#ff4500', cursor: 'pointer', position: 'absolute', top: '10px', right: '10px' }"
         (click)="toggleFavorito(produto); $event.stopPropagation()"
         title="Favorito">
       </fa-icon>
@@ -20,10 +20,10 @@
       <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
 
       <!-- Nome do Produto -->
-      <h3>{{ produto.nome }}</h3>
+      <h3>{{ produto.id }}</h3>
 
       <!-- Preço do Produto -->
-      <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
+      <h2>Preço: {{ (produto.promocoes[0]?.preco! /100) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
 
       <!-- Descrição -->
       <p>{{ produto.descricao }}</p>

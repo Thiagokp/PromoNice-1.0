@@ -41,8 +41,8 @@
 
       <!-- Ícone de Coração no Topo Direito -->
       <fa-icon
-        [icon]="faHeart"
-        [ngStyle]="{ color: produto ? '#ff0000' : '#ff4500', cursor: 'pointer', position: 'absolute', top: '10px', right: '10px' }"
+        [icon]="produto.favorito ? faHeart : faHeartRegular"
+        [ngStyle]="{ color: produto.favorito ? '#ff0000' : '#ff4500', cursor: 'pointer', position: 'absolute', top: '10px', right: '10px' }"
         (click)="toggleFavorito(produto); $event.stopPropagation()"
         title="Favorito">
       </fa-icon>

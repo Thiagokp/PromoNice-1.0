@@ -7,6 +7,7 @@ import {
   faPencil,
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Produto } from '../../models/cadastro-produto.model';
 import { UsuarioService } from '../../services/usuario.service';
@@ -22,6 +23,7 @@ export class HomeComponent {
   faTrash = faTrash;
   faPencil = faPencil;
   faHeart = faHeart;
+  faHeartRegular = faHeartRegular;
 
   produtos: Produto[] = []; // Array para armazenar os produtos
 
@@ -184,7 +186,33 @@ excluirProduto(id: number): void {
     this.produtoEditado.promocoes[0].preco = isNaN(valorNumerico) ? 0 : valorNumerico;
   }
 
-  toggleFavorito(produto: any) {
-    produto.favorito = !produto.favorito;
+  toggleFavorito(produto: any): void {
+  const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+  if (!usuario.id) {
+    this.toastr.error('Usuário não logado.');
+    return;
   }
+
+  if (produto.favorito) {
+    this.produtoService.desfavoritarProduto(produto.id, usuario.id).subscribe({
+      next: () => {
+        produto.favorito = false;
+        this.toastr.success('Produto removido dos favoritos!');
+      },
+      error: () => {
+        this.toastr.error('Erro ao desfavoritar o produto.');
+      },
+    });
+  } else {
+    this.produtoService.favoritarProduto(produto.id, usuario.id).subscribe({
+      next: () => {
+        produto.favorito = true;
+        this.toastr.success('Produto favoritado com sucesso!');
+      },
+      error: () => {
+        this.toastr.error('Erro ao favoritar produto.');
+      },
+    });
+  }
+}
 }

@@ -37,4 +37,21 @@ export class ProdutoService {
 
     return this.http.delete(`${this.api}/deletar/${id}`, { headers });
   }
+
+  favoritarProduto(produtoId: number, usuarioId: number) {
+    return this.http.post(`${environment.apiUrl}/favoritos`, {
+      usuario: { id: usuarioId },
+      produto: { id: produtoId }
+    });
+  }
+
+  desfavoritarProduto(produtoId: number, usuarioId: number) {
+    return this.http.delete(`${environment.apiUrl}/favoritos/${usuarioId}/${produtoId}`);
+  }
+
+  getFavoritosDoUsuario(usuarioId: number) {
+    return this.http.get<Produto[]>(`${environment.apiUrl}/favoritos/${usuarioId}`);
+  }
 }
+
+

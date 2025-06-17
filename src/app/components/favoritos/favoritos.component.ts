@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { ProdutoService } from '../../services/produto.service';
 import { Produto } from '../../models/cadastro-produto.model';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FavoritosComponent {
   faHeart = faHeart;
+  faHeartRegular = faHeartRegular;
 
   produtos: Produto[] = [];
 
@@ -20,19 +22,7 @@ export class FavoritosComponent {
     ) {}
 
   ngOnInit(): void {
-    this.listarProdutos(); // Carrega os produtos ao iniciar a página
-  }
-
-  listarProdutos(): void {
-    this.produtoService.listarTodosProdutos().subscribe({
-      next: (res) => {
-        console.log('Produtos carregados:', res);
-        this.produtos = res;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar produtos:', err);
-      },
-    });
+      this.carregarFavoritos()
   }
 
   abrirPromocao(url: string): void {
@@ -42,9 +32,51 @@ export class FavoritosComponent {
       this.toastr.warning('URL não disponível.', 'Atenção');
     }
   }
+  
+  carregarFavoritos() {
+    const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
 
-  toggleFavorito(produto: Produto) {
-    produto.favorito = !produto.favorito;
+    if (!usuario.id) return;
+
+    this.produtoService.getFavoritosDoUsuario(usuario.id).subscribe({
+      next: (produtos) => {
+        this.produtos = produtos; // mostra só os favoritos
+      },
+      error: () => {
+        this.toastr.error('Erro ao carregar favoritos');
+      }
+    });
   }
+
+  toggleFavorito(produto: any): void {
+  const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+  if (!usuario.id) {
+    this.toastr.error('Usuário não logado.');
+    return;
+  }
+
+  if (produto.favorito) {
+    this.produtoService.desfavoritarProduto(produto.id, usuario.id).subscribe({
+      next: () => {
+        produto.favorito = false;
+        this.toastr.success('Produto removido dos favoritos!');
+        this.produtos = this.produtos.filter(p => p.id !== produto.id); // Remove da tela
+      },
+      error: () => {
+        this.toastr.error('Erro ao desfavoritar o produto.');
+      },
+    });
+  } else {
+    this.produtoService.favoritarProduto(produto.id, usuario.id).subscribe({
+      next: () => {
+        produto.favorito = true;
+        this.toastr.success('Produto favoritado com sucesso!');
+      },
+      error: () => {
+        this.toastr.error('Erro ao favoritar produto.');
+      },
+    });
+  }
+}
 
 }
