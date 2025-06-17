@@ -30,13 +30,7 @@ export class HeaderComponent {
 
   constructor(
     private dialog: MatDialog,
-    private loginService: LoginService,
-    private router: Router
-  ) {}
-
-  constructor(
-    private dialog: MatDialog,
-    private filtroService: ProdutoFilterService
+    private filtroService: ProdutoFilterService,
     private loginService: LoginService,
     private router: Router
   ) {}
