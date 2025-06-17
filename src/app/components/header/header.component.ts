@@ -39,6 +39,14 @@ export class HeaderComponent {
     }
   }
 
+  verificarLoginNovoProduto(): void {
+    if (this.loginService.isUsuarioLogado()) {
+      this.router.navigate(['/cadastro-produto']);
+    } else {
+      this.router.navigate(['/cadastro-usuario']);
+    }
+  }
+
   isLogado(): boolean {
     return this.loginService.isUsuarioLogado();
   }
