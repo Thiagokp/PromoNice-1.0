@@ -27,6 +27,9 @@
     <div class="form-group mb-3">
       <label for="senha">Nova Senha</label>
       <input type="password" id="senha" formControlName="senha" class="form-control" [class.is-invalid]="editarForm.get('senha')?.invalid && editarForm.get('senha')?.touched" />
+      <div class="invalid-feedback" *ngIf="editarForm.get('senha')?.errors?.['required']">
+        A senha é obrigatória.
+      </div>
       <div class="invalid-feedback" *ngIf="editarForm.get('senha')?.errors?.['minlength']">
         A senha deve ter no mínimo 6 caracteres.
       </div>
@@ -36,6 +39,9 @@
     <div class="form-group mb-3">
       <label for="confirmarSenha">Confirmar Nova Senha</label>
       <input type="password" id="confirmarSenha" formControlName="confirmarSenha" class="form-control" [class.is-invalid]="editarForm.get('confirmarSenha')?.invalid && editarForm.get('confirmarSenha')?.touched" />
+      <div class="invalid-feedback" *ngIf="editarForm.get('confirmarSenha')?.errors?.['required']">
+        Confirmar senha é obrigatório.
+      </div>
       <div class="invalid-feedback" *ngIf="editarForm.get('confirmarSenha')?.errors?.['minlength']">
         A senha deve ter no mínimo 6 caracteres.
       </div>

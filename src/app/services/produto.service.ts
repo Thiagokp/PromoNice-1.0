@@ -52,6 +52,12 @@ export class ProdutoService {
   getFavoritosDoUsuario(usuarioId: number) {
     return this.http.get<Produto[]>(`${environment.apiUrl}/favoritos/${usuarioId}`);
   }
+
+  buscarProdutosPorNome(filtro: string): Observable<Produto[]> {
+    return this.http.get<Produto[]>(`${this.api}/buscar?filtro=${encodeURIComponent(filtro)}`);
+  }
+
+
 }
 
 

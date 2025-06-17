@@ -1,3 +1,4 @@
+import { ProdutoFilterService } from './../../services/produto-filter.service';
 import { Component } from '@angular/core';
 import { ProdutoService } from '../../services/produto.service';
 import {
@@ -11,6 +12,7 @@ import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Produto } from '../../models/cadastro-produto.model';
 import { UsuarioService } from '../../services/usuario.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +27,9 @@ export class HomeComponent {
   faHeart = faHeart;
   faHeartRegular = faHeartRegular;
 
-  produtos: Produto[] = []; // Array para armazenar os produtos
+  produtos: Produto[] = [];// Array para armazenar os produtos
+  termoBusca: string = '';
+  filtroSubscription!: Subscription;
 
   isEditando: boolean = false; // Controle para exibir o formulário de edição
   produtoEditado: any = {
@@ -37,10 +41,17 @@ export class HomeComponent {
   constructor(
     private produtoService: ProdutoService,
     private toastr: ToastrService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private produtoFilterService: ProdutoFilterService
   ) {}
 
   ngOnInit(): void {
+
+
+     this.filtroSubscription = this.produtoFilterService.termoBusca$.subscribe(termo => {
+      this.termoBusca = termo;
+      this.filtrarProdutos();
+    });
 
     if (this.produtoEditado?.promocoes[0]?.preco !== undefined) {
       const preco = Number(this.produtoEditado.promocoes[0].preco).toFixed(2);
@@ -48,6 +59,10 @@ export class HomeComponent {
       this.produtoEditado.promocoes[0].preco = preco.replace('.', ',');
     }
     this.listarProdutos(); // Carrega os produtos ao iniciar a página
+  }
+
+   ngOnDestroy() {
+    this.filtroSubscription.unsubscribe();
   }
 
   listarProdutos(): void {
@@ -61,6 +76,26 @@ export class HomeComponent {
       },
     });
   }
+
+   filtrarProdutos() {
+      if (!this.termoBusca || this.termoBusca.trim() === '') {
+        this.listarProdutos();
+      } else {
+        this.produtoService.buscarProdutosPorNome(this.termoBusca).subscribe({
+          next: (res) => {
+            this.produtos = res;
+
+            if (this.produtos.length === 0) {
+              this.toastr.warning('Nenhum produto encontrado com esse nome.', 'Busca');
+            }
+          },
+          error: (err) => {
+            console.error('Erro ao buscar produtos:', err);
+            this.toastr.error('Erro ao buscar produtos.', 'Erro');
+          },
+        });
+      }
+    }
 
   editarProduto(produto: Produto): void {
     console.log('Produto para edição:', produto);
@@ -85,7 +120,7 @@ salvarProduto(): void {
   // Pega o usuário logado do localStorage
   const usuario = localStorage.getItem('usuario');
   if (!usuario) {
-    this.toastr.error('Usuário não logado', 'Erro');
+    this.toastr.error('Usuário não logado!', 'Erro');
     return;
   }
   const usuarioObj = JSON.parse(usuario);

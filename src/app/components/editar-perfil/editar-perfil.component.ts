@@ -26,7 +26,7 @@ export class EditarPerfilComponent implements OnInit {
     const usuario = this.loginService.getUsuarioLogado();
 
     if (!usuario || !usuario.id) {
-      this.toastr.error('Usuário não está logado.', 'Erro');
+      this.toastr.error('Usuário não logado!', 'Erro');
       this.router.navigate(['/login']);
       return;
     }
@@ -37,8 +37,8 @@ export class EditarPerfilComponent implements OnInit {
       {
         nome: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
-        senha: ['', [Validators.minLength(6)]], // Senha agora é opcional, com mínimo de 6 caracteres
-        confirmarSenha: ['', [Validators.minLength(6)]], // Confirmação de senha também
+        senha: ['', [Validators.required, Validators.minLength(6)]], // Senha agora é opcional, com mínimo de 6 caracteres
+        confirmarSenha: ['', [Validators.required, Validators.minLength(6)]], // Confirmação de senha também
       },
       { validators: this.passwordMatchValidator } // Validador para garantir que as senhas correspondam
     );
