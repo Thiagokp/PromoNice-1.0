@@ -39,6 +39,15 @@ export class HeaderComponent {
     }
   }
 
+  isLogado(): boolean {
+    return this.loginService.isUsuarioLogado();
+  }
+
+  logout(): void {
+    this.loginService.logout();
+    this.router.navigate(['/cadastro-usuario']);
+  }
+
   onSearch() {
     const searchInput = (
       document.querySelector('.search-input') as HTMLInputElement
