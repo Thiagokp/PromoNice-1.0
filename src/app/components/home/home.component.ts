@@ -8,7 +8,7 @@ import {
   faPencil,
   faHeart,
 } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Produto } from '../../models/cadastro-produto.model';
 import { UsuarioService } from '../../services/usuario.service';
