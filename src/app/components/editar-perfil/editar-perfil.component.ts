@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -11,16 +12,27 @@ import { Router } from '@angular/router';
 })
 export class EditarPerfilComponent implements OnInit {
   editarForm!: FormGroup;
-  usuarioId: number = 7; // Suponha que o id do usuário esteja armazenado localmente ou vindo de algum serviço de autenticação
+  usuarioId!: number;
 
   constructor(
     private usuarioService: UsuarioService,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    const usuario = this.loginService.getUsuarioLogado();
+
+    if (!usuario || !usuario.id) {
+      this.toastr.error('Usuário não está logado.', 'Erro');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    this.usuarioId = usuario.id;
+
     this.editarForm = this.fb.group(
       {
         nome: ['', [Validators.required]],
