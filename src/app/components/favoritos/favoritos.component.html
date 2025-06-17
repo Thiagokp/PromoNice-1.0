@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="produto-container">
+        <div *ngFor="let produto of produtos"
+          class="produto-card"
+         (click)="abrirPromocao(produto.promocoes[0]?.urlPromocao!)"
+         style="cursor: pointer; position: relative;">
+
+         <!-- Ícone de Coração no Topo Direito -->
+      <fa-icon
+        [icon]="faHeart"
+        [ngStyle]="{ color: '#ff0000', cursor: 'pointer', position: 'absolute', top: '10px', right: '10px' }"
+        (click)="toggleFavorito(produto); $event.stopPropagation()"
+        title="Favorito">
+      </fa-icon>
+
+      <!-- Postado por -->
+      <p style="margin: 0; padding-top: 30px;">Postado por: {{ produto.promocoes[0]?.usuario?.nome }}</p>
+
+      <!-- Imagem do Produto -->
+      <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
+
+      <!-- Nome do Produto -->
+      <h3>{{ produto.nome }}</h3>
+
+      <!-- Preço do Produto -->
+      <h2>Preço: {{ produto.promocoes[0]?.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
+
+      <!-- Descrição -->
+      <p>{{ produto.descricao }}</p>
+
+        </div>
+  </div>
+</div>

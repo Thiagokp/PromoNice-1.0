@@ -1,0 +1,82 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.produto-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 140px;
+}
+
+/* Estilo para cada card de produto */
+.produto-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 480px; /* altura fixa para alinhar tudo */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.produto-card:hover {
+  transform: scale(1.05);
+}
+
+/* Estilo para a imagem do produto */
+.produto-card img {
+  width: 100%;
+  height: 150px; /* altura fixa */
+  object-fit: contain;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Nome do produto */
+.produto-card h3 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #333;
+  height: 110px; /* fixa o espaço do nome */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Preço do produto */
+.produto-card h2 {
+  font-size: 1.25rem;
+  color: #28a745;
+  margin: 10px 0;
+}
+
+/* Descrição do produto */
+.produto-card p {
+  font-size: 1rem;
+  color: #555;
+  height: 70px; /* altura fixa */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 10px;
+  white-space: nowrap;
+}
+
+/* Estilo para os ícones */
+.fa-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.fa-icon:hover {
+  color: #ff6347;
+}

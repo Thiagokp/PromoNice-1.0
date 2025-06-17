@@ -8,4 +8,5 @@ export interface Produto {
   urlProduto: string;
   promocoes: Promocao[];
   usuario?: Usuario
+  favorito?: boolean;
 }

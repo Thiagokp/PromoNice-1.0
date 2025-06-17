@@ -10,7 +10,7 @@
         <fa-icon [icon]="faSearch"></fa-icon>
       </button>
       <div>
-        <button routerLink="/cadastro-usuario" class="new-post-button">
+        <button (click)="verificarLoginNovoProduto()" class="new-post-button">
           <fa-icon [icon]="faPlus"></fa-icon>
         </button>
       </div>
@@ -19,15 +19,15 @@
 
   <nav class="navigation">
     <ul class="list-unstyled d-flex mb-0">
-      <li class="me-3"><a id="Home" routerLink="">Home</a></li>
+      <li class="me-3"><a id="Home" routerLink="/home">Home</a></li>
       <li class="me-3"><a id="DestaquesdaSemana" routerLink="">Destaques da Semana</a></li>
-      <li><a id="Recentes" routerLink="">Favoritos</a></li>
+      <li *ngIf="isLogado" ><a id="Recentes" routerLink="/favoritos">Favoritos</a></li>
       <li class="drop-div">
         <a class="MeuPerfil" routerLink="/cadastro-usuario">Meu Perfil</a>
         <div class="drop-content">
-          <a routerLink="/cadastro-usuario">Login/Cadastro</a>
-          <a routerLink="/editar-perfil">Editar Perfil</a>
-
+          <a (click)="verificarLoginOuRedirecionar()">Login/Cadastro</a>
+          <a *ngIf="isLogado" routerLink="/editar-perfil">Editar Perfil</a>
+          <a *ngIf="isLogado" (click)="logout()">Logout</a>
         </div>
       </li>
     </ul>

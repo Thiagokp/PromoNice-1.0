@@ -118,7 +118,7 @@ salvarProduto(): void {
   // Pega o usuário logado do localStorage
   const usuario = localStorage.getItem('usuario');
   if (!usuario) {
-    this.toastr.error('Usuário não logado', 'Erro');
+    this.toastr.error('Usuário não logado!', 'Erro');
     return;
   }
   const usuarioObj = JSON.parse(usuario);
