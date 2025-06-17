@@ -37,4 +37,9 @@ export class ProdutoService {
 
     return this.http.delete(`${this.api}/deletar/${id}`, { headers });
   }
+
+    buscarProdutosPorNome(filtro: string): Observable<Produto[]> {
+    return this.http.get<Produto[]>(`${this.api}/buscar?filtro=${encodeURIComponent(filtro)}`);
+  }
+
 }

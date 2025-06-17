@@ -5,8 +5,8 @@
       <img id="imagem" src="assets/img/logo.png" alt="img">
     </div>
     <div class="search-container d-flex align-items-center">
-      <input type="text" placeholder="O que você procura?" class="search-input form-control me-2" />
-      <button class="search-button btn btn-primary" (click)="onSearch()">
+      <input type="text" placeholder="O que você procura?" class="search-input form-control me-2"  (input)="onInput($event)"  />
+      <button class="search-button btn btn-primary">
         <fa-icon [icon]="faSearch"></fa-icon>
       </button>
       <div>

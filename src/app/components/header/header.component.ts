@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Importa
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog'
+import { ProdutoFilterService } from '../../services/produto-filter.service';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +20,21 @@ export class HeaderComponent {
   faThumbsDown = faThumbsDown;
   faPlus = faPlus
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+    private filtroService: ProdutoFilterService
+  ) {}
 
 
 
-  onSearch() {
-    const searchInput = (document.querySelector('.search-input') as HTMLInputElement).value;
-    console.log('Buscando por:', searchInput);
-    // Aqui você pode adicionar lógica para realizar a busca
+  // onSearch() {
+  //   const searchInput = (document.querySelector('.search-input') as HTMLInputElement).value;
+  //   console.log('Buscando por:', searchInput);
+  //   // Aqui você pode adicionar lógica para realizar a busca
+  // }
+
+
+  onInput(event: any) {
+    const valor = event.target.value;
+    this.filtroService.atualizarTermoBusca(valor);
   }
 }
