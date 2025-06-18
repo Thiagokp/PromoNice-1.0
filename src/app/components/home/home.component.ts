@@ -26,7 +26,7 @@ export class HomeComponent {
   faPencil = faPencil;
   faHeart = faHeart;
   faHeartRegular = faHeartRegular;
-
+  usuarioLogado: any = null;
   produtos: Produto[] = [];// Array para armazenar os produtos
   termoBusca: string = '';
   filtroSubscription!: Subscription;
@@ -46,7 +46,8 @@ export class HomeComponent {
   ) {}
 
   ngOnInit(): void {
-
+      const usuarioString = localStorage.getItem('usuario');
+      this.usuarioLogado = usuarioString ? JSON.parse(usuarioString) : null;
 
      this.filtroSubscription = this.produtoFilterService.termoBusca$.subscribe(termo => {
       this.termoBusca = termo;

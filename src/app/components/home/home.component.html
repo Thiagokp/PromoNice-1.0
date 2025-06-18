@@ -63,15 +63,15 @@
       <p>{{ produto.descricao }}</p>
 
       <!-- Botões de ação -->
-      <div class="icon-actions">
-        <button class="delete-btn" (click)="excluirProduto(produto.id); $event.stopPropagation()">
-          <fa-icon [icon]="faTrash" size="lg"></fa-icon> Excluir
-        </button>
+      <div class="icon-actions" *ngIf="produto.promocoes[0]?.usuario?.id === usuarioLogado?.id">
+  <button class="delete-btn" (click)="excluirProduto(produto.id); $event.stopPropagation()">
+    <fa-icon [icon]="faTrash" size="lg"></fa-icon> Excluir
+  </button>
 
-        <button class="editar-btn" (click)="editarProduto(produto); $event.stopPropagation()">
-          <fa-icon [icon]="faPencil" size="lg"></fa-icon> Editar
-        </button>
-      </div>
+  <button class="editar-btn" (click)="editarProduto(produto); $event.stopPropagation()">
+    <fa-icon [icon]="faPencil" size="lg"></fa-icon> Editar
+  </button>
+</div>
 
     </div>
   </div>
