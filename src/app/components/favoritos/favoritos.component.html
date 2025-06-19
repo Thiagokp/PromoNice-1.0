@@ -20,7 +20,7 @@
       <img [src]="produto.urlProduto" alt="{{ produto.nome }}" />
 
       <!-- Nome do Produto -->
-      <h3>{{ produto.id }}</h3>
+      <h3>{{ produto.nome }}</h3>
 
       <!-- Preço do Produto -->
       <h2>Preço: {{ (produto.promocoes[0]?.preco! /100) | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>

@@ -1,6 +1,7 @@
 import { ProdutoFilterService } from './../../services/produto-filter.service';
 import { Component } from '@angular/core';
 import { ProdutoService } from '../../services/produto.service';
+import { FavoritoService } from '../../services/favorito.service';
 import {
   faThumbsDown,
   faThumbsUp,
@@ -42,7 +43,8 @@ export class HomeComponent {
     private produtoService: ProdutoService,
     private toastr: ToastrService,
     private usuarioService: UsuarioService,
-    private produtoFilterService: ProdutoFilterService
+    private produtoFilterService: ProdutoFilterService,
+    private favoritoService: FavoritoService
   ) {}
 
   ngOnInit(): void {
@@ -66,17 +68,29 @@ export class HomeComponent {
     this.filtroSubscription.unsubscribe();
   }
 
-  listarProdutos(): void {
+listarProdutos(): void {
+  const usuarioString = localStorage.getItem('usuario');
+  const usuario = usuarioString ? JSON.parse(usuarioString) : null;
+
+  if (usuario && usuario.id) {
+    // Usuário logado - carrega produtos com favoritos
+    this.produtoService.getProdutosComFavoritos(usuario.id).subscribe({
+      next: (res) => {
+        this.produtos = res;
+      }
+    });
+  } else {
+    // Usuário não logado - carrega todos os produtos
     this.produtoService.listarTodosProdutos().subscribe({
       next: (res) => {
-        console.log('Produtos carregados:', res);
         this.produtos = res;
       },
-      error: (err) => {
-        console.error('Erro ao carregar produtos:', err);
-      },
+      error: () => {
+        this.toastr.error('Erro ao carregar produtos');
+      }
     });
   }
+}
 
    filtrarProdutos() {
       if (!this.termoBusca || this.termoBusca.trim() === '') {
@@ -230,7 +244,7 @@ excluirProduto(id: number): void {
   }
 
   if (produto.favorito) {
-    this.produtoService.desfavoritarProduto(produto.id, usuario.id).subscribe({
+    this.favoritoService.desfavoritarProduto(produto.id, usuario.id).subscribe({
       next: () => {
         produto.favorito = false;
         this.toastr.success('Produto removido dos favoritos!');
@@ -240,7 +254,7 @@ excluirProduto(id: number): void {
       },
     });
   } else {
-    this.produtoService.favoritarProduto(produto.id, usuario.id).subscribe({
+    this.favoritoService.favoritarProduto(produto.id, usuario.id).subscribe({
       next: () => {
         produto.favorito = true;
         this.toastr.success('Produto favoritado com sucesso!');

@@ -74,7 +74,7 @@ export class CadastroUsuarioComponent implements OnInit {
         localStorage.setItem('usuario', JSON.stringify(response));
         this.toastr.success('Login bem-sucedido!', 'Sucesso');
         console.log(response.message); // "Login efetuado com sucesso!"
-        this.router.navigate(['/cadastro-produto']); // Redireciona para a página de cadastro
+        this.router.navigate(['/home']); // Redireciona para a página de cadastro
       },
       error: (error) => {
         this.toastr.error('Erro ao efetuar o login.', 'Erro');

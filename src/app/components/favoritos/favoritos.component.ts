@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import { ProdutoService } from '../../services/produto.service';
 import { Produto } from '../../models/cadastro-produto.model';
 import { ToastrService } from 'ngx-toastr';
+import { FavoritoService } from '../../services/favorito.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -17,7 +17,7 @@ export class FavoritosComponent {
   produtos: Produto[] = [];
 
   constructor(
-      private produtoService: ProdutoService,
+      private favoritoService: FavoritoService,
       private toastr: ToastrService,
     ) {}
 
@@ -38,7 +38,7 @@ export class FavoritosComponent {
 
     if (!usuario.id) return;
 
-    this.produtoService.getFavoritosDoUsuario(usuario.id).subscribe({
+    this.favoritoService.getFavoritosDoUsuario(usuario.id).subscribe({
       next: (produtos) => {
         this.produtos = produtos; // mostra só os favoritos
       },
@@ -56,7 +56,7 @@ export class FavoritosComponent {
   }
 
   if (produto.favorito) {
-    this.produtoService.desfavoritarProduto(produto.id, usuario.id).subscribe({
+    this.favoritoService.desfavoritarProduto(produto.id, usuario.id).subscribe({
       next: () => {
         produto.favorito = false;
         this.toastr.success('Produto removido dos favoritos!');
@@ -67,7 +67,7 @@ export class FavoritosComponent {
       },
     });
   } else {
-    this.produtoService.favoritarProduto(produto.id, usuario.id).subscribe({
+    this.favoritoService.favoritarProduto(produto.id, usuario.id).subscribe({
       next: () => {
         produto.favorito = true;
         this.toastr.success('Produto favoritado com sucesso!');
