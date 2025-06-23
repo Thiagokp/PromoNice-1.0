@@ -1,17 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Fonte global */
+body, h1, h2, h3, p, input, button {
+  font-family: 'Poppins', sans-serif;
+}
+
 /* Container principal */
 .container {
   width: 80%;
   margin: 0 auto;
   padding: 20px;
-  padding-top: 60px;
+  padding-top: 100px;
   text-align: center;
 }
 
 /* Título */
 h1 {
-  font-size: 2rem;
-  margin-bottom: 100px;
-  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 80px;
+  color: orangered;
+  font-weight: 600;
 }
 
 /* Container para os cards dos produtos */
@@ -27,37 +35,39 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 480px; /* altura fixa para alinhar tudo */
+  height: 480px;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   background-color: #fff;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .produto-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para a imagem do produto */
 .produto-card img {
   width: 100%;
-  height: 150px; /* altura fixa */
+  height: 150px;
   object-fit: contain;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-bottom: 10px;
 }
 
 /* Nome do produto */
 .produto-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   margin-top: 10px;
   color: #333;
-  height: 110px; /* fixa o espaço do nome */
+  height: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
 /* Preço do produto */
@@ -65,13 +75,14 @@ h1 {
   font-size: 1.25rem;
   color: #28a745;
   margin: 10px 0;
+  font-weight: 600;
 }
 
 /* Descrição do produto */
 .produto-card p {
   font-size: 1rem;
   color: #555;
-  height: 70px; /* altura fixa */
+  height: 70px;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-top: 10px;
@@ -94,10 +105,10 @@ h1 {
 }
 
 .fa-icon:hover {
-  color: #ff6347;
+  color: orangered;
 }
 
-/* Estilo para o botão de excluir */
+/* Botão de excluir */
 .delete-btn {
   background-color: #dc3545;
   color: white;
@@ -115,7 +126,7 @@ h1 {
   background-color: #c82333;
 }
 
-/* Estilo para o botão de editar */
+/* Botão de editar */
 .editar-btn {
   background-color: #007bff;
   color: white;
@@ -130,7 +141,7 @@ h1 {
 }
 
 .editar-btn:hover {
-  background-color: blue;
+  background-color: #0056b3;
 }
 
 /* Formulário de edição */
@@ -148,6 +159,7 @@ h1 {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
+  color: #333;
 }
 
 .formulario-edicao input {
@@ -177,4 +189,21 @@ h1 {
 .formulario-edicao button[type="button"] {
   background-color: #f44336;
   color: white;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .produto-card {
+    height: auto;
+  }
+
+  .produto-card h3,
+  .produto-card p {
+    height: auto;
+    white-space: normal;
+  }
 }
