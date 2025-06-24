@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 /* Fonte global */
 body, h1, h2, h3, p, input, button {
@@ -22,7 +22,83 @@ h1 {
   font-weight: 600;
 }
 
-/* Container para os cards dos produtos */
+/* Formulário de edição */
+.formulario-edicao {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+  max-width: 450px;
+  margin: 20px auto;
+}
+
+.formulario-edicao h2 {
+  text-align: center;
+  color: orangered;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.formulario-edicao label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+.formulario-edicao input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.formulario-edicao input:focus {
+  outline: none;
+  border-color: orangered;
+  box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
+}
+
+/* Botões */
+.formulario-edicao button {
+  width: 48%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.formulario-edicao button[type="submit"] {
+  background: linear-gradient(to right, #ffa751, #ff4500);
+  color: #fff;
+  margin: 7px 2px;
+}
+
+.formulario-edicao button[type="submit"]:hover {
+  background: #fff;
+  color: orangered;
+  border: 1px solid orangered;
+}
+
+.formulario-edicao button[type="button"] {
+  background-color: #ddd;
+  color: #444;
+  margin: 7px 2px;
+}
+
+.formulario-edicao button[type="button"]:hover {
+  background-color: #bbb;
+}
+
+/* Cards de produtos já existentes */
 .produto-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -30,7 +106,6 @@ h1 {
   padding: 20px;
 }
 
-/* Estilo para cada card de produto */
 .produto-card {
   display: flex;
   flex-direction: column;
@@ -50,7 +125,6 @@ h1 {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo para a imagem do produto */
 .produto-card img {
   width: 100%;
   height: 150px;
@@ -59,7 +133,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* Nome do produto */
 .produto-card h3 {
   font-size: 1.4rem;
   margin-top: 10px;
@@ -70,7 +143,6 @@ h1 {
   line-height: 1.4;
 }
 
-/* Preço do produto */
 .produto-card h2 {
   font-size: 1.25rem;
   color: #28a745;
@@ -78,7 +150,6 @@ h1 {
   font-weight: 600;
 }
 
-/* Descrição do produto */
 .produto-card p {
   font-size: 1rem;
   color: #555;
@@ -89,7 +160,7 @@ h1 {
   white-space: nowrap;
 }
 
-/* Container dos botões */
+/* Ações */
 .icon-actions {
   margin-top: auto;
   display: flex;
@@ -97,7 +168,6 @@ h1 {
   gap: 10px;
 }
 
-/* Estilo para os ícones */
 .fa-icon {
   font-size: 1.5rem;
   cursor: pointer;
@@ -108,7 +178,7 @@ h1 {
   color: orangered;
 }
 
-/* Botão de excluir */
+/* Botões dos cards */
 .delete-btn {
   background-color: #dc3545;
   color: white;
@@ -126,7 +196,6 @@ h1 {
   background-color: #c82333;
 }
 
-/* Botão de editar */
 .editar-btn {
   background-color: #007bff;
   color: white;
@@ -144,53 +213,6 @@ h1 {
   background-color: #0056b3;
 }
 
-/* Formulário de edição */
-.formulario-edicao {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: 20px auto;
-}
-
-.formulario-edicao label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #333;
-}
-
-.formulario-edicao input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.formulario-edicao button {
-  width: 48%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.formulario-edicao button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  margin: 7px;
-}
-
-.formulario-edicao button[type="button"] {
-  background-color: #f44336;
-  color: white;
-}
-
 /* Responsivo */
 @media (max-width: 768px) {
   .container {
@@ -205,5 +227,9 @@ h1 {
   .produto-card p {
     height: auto;
     white-space: normal;
+  }
+
+  .formulario-edicao {
+    padding: 20px;
   }
 }

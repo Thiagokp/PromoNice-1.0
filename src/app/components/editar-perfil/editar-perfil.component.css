@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -30,7 +32,8 @@ body {
 .card h2 {
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
+  color: orangered;
+  font-weight: 700;
 }
 
 /* Form group padrão */
@@ -56,13 +59,14 @@ input.form-control {
   border: 2px solid #ddd;
   border-radius: 8px;
   transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Campo em foco */
 input:focus,
 input.form-control:focus {
-  border-color: #ffc371;
-  box-shadow: 0 0 5px rgba(255, 195, 113, 0.5);
+  border-color: orangered;
+  box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
   outline: none;
 }
 
@@ -84,7 +88,7 @@ button.btn.btn-primary {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: linear-gradient(to right, #ffc371, #ff5f6d);
+  background: linear-gradient(to right, #ffa751, #ff4500);
   color: #fff;
   transition: background 0.3s ease, color 0.3s ease;
 }
@@ -93,8 +97,8 @@ button.btn.btn-primary {
 button.btn:hover,
 button.btn.btn-primary:hover {
   background: #fff;
-  color: #ff5f6d;
-  border: 1px solid #ff5f6d;
+  color: orangered;
+  border: 1px solid orangered;
 }
 
 /* Botão desabilitado */
@@ -105,7 +109,7 @@ button.btn.btn-primary:disabled {
   border: none;
 }
 
-/* Grupo de botões (separar salvar/cancelar) */
+/* Grupo de botões (salvar/cancelar) */
 .button-group {
   display: flex;
   justify-content: space-between;
@@ -116,12 +120,14 @@ button.btn.btn-primary:disabled {
 .btn.cancel {
   background-color: #eee;
   color: #444;
+  font-weight: 500;
 }
 
 .btn.cancel:hover {
   background-color: #ccc;
 }
 
+/* Campo de senha antiga em erro */
 #senhaAntiga {
   border: 2px solid #dc3545;
 }
